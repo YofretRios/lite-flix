@@ -1,4 +1,4 @@
-import { Movie, MovieBaseResponse, MoviePopularResponse } from "@/types/movies";
+import { Movie, MovieBaseResponse, MoviePopularResponse } from '@/types/movies';
 
 const BASE_URL = process.env.TMDB_BASE_URL;
 const API_KEY = process.env.TMDB_API_KEY;
@@ -9,7 +9,7 @@ export async function fetchHightlight(): Promise<Movie> {
   );
 
   if (!response.ok) {
-    throw new Error("An error while fetching the movie data");
+    throw new Error('An error while fetching the movie data');
   }
 
   const movies = (await response.json()) as MovieBaseResponse;
@@ -25,7 +25,7 @@ export async function fetchPopular(): Promise<Movie[]> {
   const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
 
   if (!response.ok) {
-    throw new Error("An error while fetching the movie data");
+    throw new Error('An error while fetching the movie data');
   }
 
   const movies = (await response.json()) as MoviePopularResponse;
