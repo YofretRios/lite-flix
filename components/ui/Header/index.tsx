@@ -7,24 +7,36 @@ import user from '@/assets/images/user.png';
 
 export default function Header() {
   return (
-    <header className="py-[15px] lg:py-[32px] flex items-center">
-      <p className="text-aqua tracking-[4px] text-[34px]/[34px]">
+    <header className="py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start">
+      <p className="text-aqua tracking-[4px] text-[34px]/[34px] order-2 md:order-1 animate-fadeInSlideBottom">
         <span className="font-bold">LITE</span>
         <span className="font-normal">FLIX</span>
       </p>
 
-      <Tertiary className="ml-[64px]">
+      <Tertiary className="ml-[64px] hidden md:flex md:order-2 animate-fadeInSlideBottom">
         <Image src={plusIcon} alt="Add" />
         <span className="font-bold tracking-[4px] text-[18px]/[18px]">
           Agregar Pelicula
         </span>
       </Tertiary>
 
-      <div className="flex items-center space-x-[40px] ml-auto">
-        <Image src={menuIcon} alt="Menu" />
-        <Image src={bellIcon} alt="Notifications" />
-        <Image height={40} width={40} src={user} alt="Anonymous user" />
-      </div>
+      <Image
+        className="order-1 md:order-2 md:ml-auto opacity-0 animate-fadeInSlideTop delay-300ms"
+        src={menuIcon}
+        alt="Menu"
+      />
+      <Image
+        className="hidden md:block md:order-2 md:ml-[40px] opacity-0 animate-fadeInSlideTop delay-400ms"
+        src={bellIcon}
+        alt="Notifications"
+      />
+      <Image
+        className="order-3 md:ml-[40px] opacity-0 animate-fadeInSlideTop delay-500ms"
+        height={40}
+        width={40}
+        src={user}
+        alt="Anonymous user"
+      />
     </header>
   );
 }
