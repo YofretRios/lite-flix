@@ -14,6 +14,7 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        aqua: '#64EEBC',
       },
       fontWeight: {
         light: '300',
@@ -21,6 +22,22 @@ export default {
         medium: '500',
         semibold: '600',
         bold: '700',
+      },
+      keyframes: {
+        scaleIn: {
+          '0%': { transform: 'scale(1.1)' },
+          '100%': { transform: 'scale(1)' },
+        },
+      },
+      animation: {
+        scaleIn: 'scaleIn 5s ease-in-out',
+      },
+      container: {
+        center: true,
+        screens: {
+          sm: '327px',
+          lg: '1232px',
+        },
       },
     },
   },

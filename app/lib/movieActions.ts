@@ -1,4 +1,5 @@
 'use server';
+import { UploadedMovie } from '@/types/movies';
 import { createClient } from '@/utils/supabase/server';
 
 type MovieData = {
@@ -26,7 +27,7 @@ export async function uploadMovie(data: MovieData) {
   };
 }
 
-export async function fetchUploadedMovies() {
+export async function fetchUploadedMovies(): Promise<UploadedMovie[]> {
   const supabase = await createClient();
 
   const { data, error } = await supabase.from('movies').select();

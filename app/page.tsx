@@ -7,7 +7,11 @@ export default async function Home() {
   const popular = await fetchPopular();
   const uploadedMovies = await fetchUploadedMovies();
 
-  console.log(uploadedMovies);
-
-  return <MoviesHome highlightedMovie={movie} popular={popular} />;
+  return (
+    <MoviesHome
+      highlightedMovie={movie}
+      popular={popular}
+      uploadedMovies={uploadedMovies}
+    />
+  );
 }
