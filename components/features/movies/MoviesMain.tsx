@@ -4,8 +4,8 @@ import { Movie, UploadedMovie } from '@/types/movies';
 import UploadModal from '@/components/ui/UploadModal';
 import Header from '@/components/ui/Header';
 import HeroSection from './HeroSection';
-import MovieCard from '@/components/ui/MovieCard';
 import { TMDB_BACKDROP_SIZE, TMDB_SECURE_BASE_URL } from '@/utils/globals';
+import MovieList from './MovieList';
 
 type MoviesHomeProps = {
   highlightedMovie: Movie;
@@ -25,7 +25,7 @@ export default function MoviesHome({
   };
 
   return (
-    <main className="main-h-scree relative bg-background text-white h-full">
+    <main className="relative bg-background text-white h-full">
       <div className="absolute top-0 left-0 right-0 h-[calc(100%-163px)] md:inset-0 md:h-full overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 animate-scaleIn"
@@ -42,11 +42,7 @@ export default function MoviesHome({
       <Header />
       <HeroSection highlightedMovie={highlightedMovie} />
       <div className="relative z-10 ">
-        <ul className="flex flex-col gap-[24px] items-center">
-          {popular.map((item) => (
-            <MovieCard key={item.id} movie={item} />
-          ))}
-        </ul>
+        <MovieList popular={popular} />
 
         <h1>Uploaded Movies</h1>
         <ul>

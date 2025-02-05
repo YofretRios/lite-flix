@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import { Movie } from '@/types/movies';
 import { TMDB_POSTER_SIZE, TMDB_SECURE_BASE_URL } from '@/utils/globals';
@@ -8,8 +9,22 @@ type MovieCardProps = {
   movie: Movie;
 };
 export default function MovieCard({ movie }: MovieCardProps) {
+  // Child animation variant for the staggered animation, sliding from top while fading in
+  const item = {
+    hidden: { opacity: 0, y: -20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
-    <li
+    <motion.li
+      variants={item}
       className="relative flex pt-[52px] justify-center w-[327px] h-[172px] gap-0 rounded-[4px] bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url(${TMDB_SECURE_BASE_URL}/${TMDB_POSTER_SIZE.md}${movie.poster_path})`,
@@ -20,6 +35,6 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <Image src={circlePlay} alt="Playback" />
         <p className="text-base-custom mt-[34px]">{movie.title}</p>
       </div>
-    </li>
+    </motion.li>
   );
 }
