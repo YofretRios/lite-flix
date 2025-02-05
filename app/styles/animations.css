@@ -1,0 +1,100 @@
+@keyframes scaleIn {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 5s ease-in-out forwards;
+}
+
+@keyframes fadeInSlideBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInSlideBottom {
+  animation: fadeInSlideBottom 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeInSlideTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInSlideTop {
+  animation: fadeInSlideTop 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInSlideRight {
+  animation: fadeInSlideRight 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeInSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInSlideLeft {
+  animation: fadeInSlideLeft 0.5s ease-in-out forwards;
+}
+
+.delay-100ms {
+  animation-delay: 0.1s;
+}
+.delay-200ms {
+  animation-delay: 0.2s;
+}
+.delay-300ms {
+  animation-delay: 0.3s;
+}
+.delay-400ms {
+  animation-delay: 0.4s;
+}
+.delay-500ms {
+  animation-delay: 0.5s;
+}
+.delay-600ms {
+  animation-delay: 0.6s;
+}
+.delay-700ms {
+  animation-delay: 0.7s;
+}
+.delay-800ms {
+  animation-delay: 0.8s;
+}
+.delay-900ms {
+  animation-delay: 0.9s;
+}

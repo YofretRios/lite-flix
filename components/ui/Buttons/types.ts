@@ -1,6 +1,9 @@
-import { ReactNode } from 'react';
-
 export interface BaseButtonProps {
-  children: ReactNode;
   className?: string;
+  textStyle?: string;
+  text?: string;
+  icon?: {
+    src: string;
+    alt: string;
+  };
 }

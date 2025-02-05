@@ -1,8 +1,18 @@
-import axios from 'axios';
+/**
+ * Authenticates the user by fetching authentication parameters from the server.
+ *
+ * @returns {Promise<any>} A promise that resolves to the authentication parameters in JSON format.
+ */
 
-export default async function authenticator() {
+type Authenticator = {
+  token: string;
+  signature: string;
+  expire: number;
+};
+export default async function authenticator(): Promise<Authenticator> {
   // Fetch the authentication parameters from the server
-  const { data } = await axios.get('/api/imagekit_auth');
+  const response = await fetch('/api/imagekit_auth');
+  const data = await response.json();
 
-  return data;
+  return await data;
 }

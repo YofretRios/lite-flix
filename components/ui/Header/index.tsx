@@ -7,18 +7,17 @@ import user from '@/assets/images/user.png';
 
 export default function Header() {
   return (
-    <header className="py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start">
+    <header className="sticky py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start container">
       <p className="text-aqua tracking-[4px] text-[34px]/[34px] order-2 md:order-1 animate-fadeInSlideBottom">
         <span className="font-bold">LITE</span>
         <span className="font-normal">FLIX</span>
       </p>
 
-      <Tertiary className="ml-[64px] hidden md:flex md:order-2 animate-fadeInSlideBottom">
-        <Image src={plusIcon} alt="Add" />
-        <span className="font-bold tracking-[4px] text-[18px]/[18px]">
-          Agregar Pelicula
-        </span>
-      </Tertiary>
+      <Tertiary
+        className="ml-[64px] hidden md:flex md:order-2 animate-fadeInSlideBottom"
+        text="Agregar Pelicula"
+        icon={{ src: plusIcon, alt: 'Play' }}
+      />
 
       <Image
         className="order-1 md:order-2 md:ml-auto opacity-0 animate-fadeInSlideTop delay-300ms"

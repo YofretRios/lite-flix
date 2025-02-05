@@ -1,5 +1,5 @@
 import { fetchHightlight, fetchPopular } from '@/services/moviesService';
-import { MoviesHome } from '@/components/features/movies/MoviesHome';
+import MoviesMain from '@/components/features/movies/MoviesMain';
 import { fetchUploadedMovies } from './lib/movieActions';
 
 export default async function Home() {
@@ -8,7 +8,7 @@ export default async function Home() {
   const uploadedMovies = await fetchUploadedMovies();
 
   return (
-    <MoviesHome
+    <MoviesMain
       highlightedMovie={movie}
       popular={popular}
       uploadedMovies={uploadedMovies}

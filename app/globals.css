@@ -1,27 +1,25 @@
+@import "./styles/animations.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .delay-100ms {
-    animation-delay: 0.1s;
+@layer base {
+  :root {
+    --background: #242424;
   }
-  .delay-200ms {
-    animation-delay: 0.2s;
-  }
-  .delay-300ms {
-    animation-delay: 0.3s;
-  }
-  .delay-400ms {
-    animation-delay: 0.4s;
-  }
-  .delay-500ms {
-    animation-delay: 0.5s;
-  }
-}
 
-:root {
-  --background: #242424;
+  body,
+  html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,7 +28,22 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
+@layer components {
+  .heroTitle {
+    @apply text-[76px] leading-[78px] tracking-[12px] font-bold;
+  }
+
+  .heroHint {
+    @apply text-[20px] leading-[20px] tracking-[4px] mb-[16px];
+  }
+
+  @screen md {
+    .heroTitle {
+      @apply text-[120px] leading-[100px] tracking-[16px] font-bold;
+    }
+
+    .heroHint {
+      @apply mb-[24px];
+    }
+  }
 }
