@@ -29,6 +29,10 @@
 }
 
 @layer components {
+  .text-base-custom {
+    @apply text-[16px] leading-[16px] tracking-[4px] font-normal text-center;
+  }
+
   .heroTitle {
     @apply text-[76px] leading-[78px] tracking-[12px] font-bold;
   }

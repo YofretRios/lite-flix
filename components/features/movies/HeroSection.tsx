@@ -10,7 +10,7 @@ export default function HeroSection({
   highlightedMovie: Movie;
 }) {
   return (
-    <div className="flex relative z-10 text-white container h-[calc(100%-70px)] md:h-[calc(100%-104px)]">
+    <div className="flex relative z-10 text-white container h-[calc(100%-163px)] md:h-[calc(100%-104px)]">
       <div className="flex w-full flex-col items-center md:items-start justify-end">
         <p className="heroHint delay-500ms opacity-0 animate-fadeInSlideTop">
           Original de <span>LiteFlix</span>
@@ -33,8 +33,6 @@ export default function HeroSection({
           />
         </div>
       </div>
-
-      <div className="bg-gradient-to-t from-background to-background/0 h-[150px] inset-x-[0] absolute bottom-0 md:hidden" />
     </div>
   );
 }
