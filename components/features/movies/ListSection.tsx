@@ -37,6 +37,8 @@ export default function ListSection({
           key={item.id}
           title={item.title}
           backgroundImage={`${TMDB_SECURE_BASE_URL}/${TMDB_POSTER_SIZE.md}${item.poster_path}`}
+          voteAverage={item.vote_average}
+          releaseDate={item.release_date}
         />
       ));
     }
