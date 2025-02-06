@@ -20,9 +20,9 @@ export default function MoviesHome({
 }: MoviesHomeProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  const openDialog = () => {
-    dialogRef.current?.showModal();
-  };
+  // const openDialog = () => {
+  //   dialogRef.current?.showModal();
+  // };
 
   return (
     <main className="relative bg-background text-white h-full">
