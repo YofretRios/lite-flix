@@ -53,8 +53,12 @@ export default function ListSection({
   };
 
   return (
-    <div className="relative z-10 pb-[52px] md:pb-[0]">
-      <Select onChange={onChange} defaultValue={initialValue}>
+    <div className="z-10 pb-[52px] md:pb-[0]">
+      <Select
+        className="mb-[32px] animate-fadeInSlideTop delay-300ms"
+        onChange={onChange}
+        defaultValue={initialValue}
+      >
         <SelectTrigger>Ver:</SelectTrigger>
         <SelectContent>
           <SelectOption label="Populares" value="popular" />

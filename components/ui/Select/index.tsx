@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
 import { SelectContext } from './SelectContext';
 
 type SelectProps = {
   children: React.ReactNode;
+  className?: string;
   defaultValue?: {
     value: string;
     label: string;
@@ -12,6 +14,7 @@ type SelectProps = {
 
 export default function Select({
   children,
+  className,
   defaultValue = { value: '', label: '' },
   onChange,
 }: SelectProps) {
@@ -33,6 +36,8 @@ export default function Select({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const selectClasses = clsx('relative z-20 text-center', className);
+
   return (
     <SelectContext.Provider
       value={{
@@ -43,7 +48,7 @@ export default function Select({
         onChange,
       }}
     >
-      <div ref={dropdownRef} className="relative z-20 text-center">
+      <div ref={dropdownRef} className={selectClasses}>
         {children}
       </div>
     </SelectContext.Provider>

@@ -13,15 +13,11 @@ export default function SelectTrigger({ children }: SelectTriggerProps) {
     <button
       type="button"
       onClick={() => setIsOpen(!isOpen)}
-      className="relative flex items-end px-4 py-4 text-[16px]/[16px] tracking-[4px]"
+      className="items-end py-4 text-[16px]/[16px] tracking-[4px]"
     >
       <span className="font-normal">{children}</span>
       <span className="font-bold ml-[7px]">{selectedValue.label}</span>
-      <Image
-        className="absolute top-[18px] -right-[5px]"
-        src={arrowDown}
-        alt="Open Select"
-      />
+      <Image className="inline ml-[10px]" src={arrowDown} alt="Open Select" />
     </button>
   );
 }

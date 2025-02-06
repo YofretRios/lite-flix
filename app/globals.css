@@ -34,7 +34,7 @@
   }
 
   .select-menu::before {
-    @apply content-[''] absolute -top-[15px] right-[24px] border-[8px] border-transparent border-b-background;
+    @apply content-[''] absolute -top-[15px] right-[14px] border-[8px] border-transparent border-b-background;
   }
 
   .text-base-custom {

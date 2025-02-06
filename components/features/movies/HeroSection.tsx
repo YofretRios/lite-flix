@@ -11,11 +11,11 @@ export default function HeroSection({
 }) {
   return (
     <div className="flex text-white w-full">
-      <div className="flex w-full flex-col items-center md:items-start justify-end mt-72 md:mt-0">
+      <div className="flex w-full flex-col items-center md:items-start justify-end mt-52 md:mt-0">
         <p className="heroHint delay-500ms opacity-0 animate-fadeInSlideTop">
           Original de <span>LiteFlix</span>
         </p>
-        <h1 className="heroTitle text-aqua delay-600ms opacity-0 animate-fadeInSlideRight">
+        <h1 className="heroTitle text-aqua delay-600ms opacity-0 animate-fadeInSlideRight text-center md:text-left">
           {highlightedMovie.title}
         </h1>
 
