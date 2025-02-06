@@ -15,7 +15,7 @@ export default function Secondary({
   animateBorder = false,
 }: SecondaryProps) {
   const classes = clsx(
-    'bg-[#242424]/50 text-white py-[21px] flex items-center justify-center space-x-2 min-w-[248] relative',
+    'bg-[#242424]/50 text-white py-[21px] flex items-center justify-center space-x-2 min-w-[248px] relative',
     className
   );
   const textClasses = clsx('tracking-[4px] text-[18px]/[18px]', textStyle);

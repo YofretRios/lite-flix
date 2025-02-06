@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-bebas-neue)'],
+        normal: ['var(--font-bebas-neue)', 'var(--font-bebas-neue-light)'],
+        light: ['var(--font-bebas-neue-light)'],
       },
       colors: {
         background: 'var(--background)',

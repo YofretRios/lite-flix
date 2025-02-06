@@ -10,7 +10,7 @@ export default function Header() {
     <header className="sticky py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start container">
       <p className="text-aqua tracking-[4px] text-[34px]/[34px] order-2 md:order-1 animate-fadeInSlideBottom">
         <span className="font-bold">LITE</span>
-        <span className="font-normal">FLIX</span>
+        <span className="font-light font-semibold">FLIX</span>
       </p>
 
       <Tertiary

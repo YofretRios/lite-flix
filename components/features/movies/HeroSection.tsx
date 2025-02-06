@@ -10,8 +10,8 @@ export default function HeroSection({
   highlightedMovie: Movie;
 }) {
   return (
-    <div className="flex relative z-10 text-white container h-[calc(100%-163px)] md:h-[calc(100%-104px)]">
-      <div className="flex w-full flex-col items-center md:items-start justify-end">
+    <div className="flex text-white w-full">
+      <div className="flex w-full flex-col items-center md:items-start justify-end mt-72 md:mt-0">
         <p className="heroHint delay-500ms opacity-0 animate-fadeInSlideTop">
           Original de <span>LiteFlix</span>
         </p>

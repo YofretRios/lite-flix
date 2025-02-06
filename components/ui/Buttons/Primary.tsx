@@ -4,7 +4,7 @@ import { BaseButtonProps } from './types';
 
 export default function Primary({ className, text, icon }: BaseButtonProps) {
   const classes = clsx(
-    'bg-background text-white py-[21px] flex items-center justify-center space-x-2 min-w-[248]',
+    'bg-background text-white py-[21px] flex items-center justify-center space-x-2 min-w-[248px]',
     className
   );
 

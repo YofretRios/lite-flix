@@ -3,9 +3,9 @@ import { useRef } from 'react';
 import { Movie, UploadedMovie } from '@/types/movies';
 import UploadModal from '@/components/ui/UploadModal';
 import Header from '@/components/ui/Header';
-import HeroSection from './HeroSection';
 import { TMDB_BACKDROP_SIZE, TMDB_SECURE_BASE_URL } from '@/utils/globals';
-import MovieList from './MovieList';
+import HeroSection from './HeroSection';
+import ListSection from './ListSection';
 
 type MoviesHomeProps = {
   highlightedMovie: Movie;
@@ -38,23 +38,15 @@ export default function MoviesHome({
 
         <div className="bg-gradient-to-t from-background to-background/0 h-[150px] inset-x-[0] absolute bottom-0 md:hidden" />
       </div>
+      <div className="relative container z-10 text-white h-full">
+        <Header />
+        <div className="flex flex-col md:flex-row h-[calc(100%-163px)] md:h-[calc(100%-104px)]">
+          <HeroSection highlightedMovie={highlightedMovie} />
+          <ListSection popular={popular} uploadedMovies={uploadedMovies} />
+        </div>
 
-      <Header />
-      <HeroSection highlightedMovie={highlightedMovie} />
-      <div className="relative z-10 ">
-        <MovieList popular={popular} />
-
-        <h1>Uploaded Movies</h1>
-        <ul>
-          {uploadedMovies.map((movie) => (
-            <li key={movie.id}>{movie.movie_title}</li>
-          ))}
-        </ul>
-
-        <button onClick={openDialog}>Upload</button>
+        <UploadModal ref={dialogRef} />
       </div>
-
-      <UploadModal ref={dialogRef} />
     </main>
   );
 }

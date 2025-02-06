@@ -29,6 +29,14 @@
 }
 
 @layer components {
+  .select-menu {
+    @apply absolute bg-background py-[24px] md:py-[16px] w-full md:w-[241px] md:right-[16px];
+  }
+
+  .select-menu::before {
+    @apply content-[''] absolute -top-[15px] right-[24px] border-[8px] border-transparent border-b-background;
+  }
+
   .text-base-custom {
     @apply text-[16px] leading-[16px] tracking-[4px] font-normal text-center;
   }
