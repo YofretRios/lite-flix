@@ -7,11 +7,13 @@ import './globals.css';
 const bebasNeue = Bebas_Neue({
   weight: ['400'],
   variable: '--font-bebas-neue',
+  subsets: ['latin'],
 });
 
 const bebasNeueLight = localFont({
   src: '../app/fonts/Bebas-Neue-Light.ttf.woff',
   variable: '--font-bebas-neue-light',
+  style: 'light',
 });
 
 export const metadata: Metadata = {
