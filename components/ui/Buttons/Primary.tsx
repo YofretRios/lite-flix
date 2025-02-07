@@ -3,9 +3,11 @@ import Image from 'next/image';
 import { BaseButtonProps } from './types';
 
 export default function Primary({
+  type = 'button',
   className,
   text,
   icon,
+  textStyle,
   onClick,
 }: BaseButtonProps) {
   const classes = clsx(
@@ -13,10 +15,12 @@ export default function Primary({
     className
   );
 
+  const textClasses = clsx('tracking-[4px] text-[18px]/[21.6px]', textStyle);
+
   return (
-    <button type="button" className={classes} onClick={onClick}>
+    <button type={type} className={classes} onClick={onClick}>
       {icon && <Image src={icon.src} alt={icon.alt} />}
-      <span className="tracking-[4px] text-[18px]/[21.6px]">{text}</span>
+      <span className={textClasses}>{text}</span>
     </button>
   );
 }

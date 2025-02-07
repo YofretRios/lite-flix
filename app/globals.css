@@ -29,6 +29,9 @@
 }
 
 @layer components {
+  .input {
+    @apply appearance-none bg-background border-b border-white text-white focus:outline-none pb-[8px];
+  }
   .select-menu {
     @apply absolute bg-background py-[24px] md:py-[16px] w-full md:w-[241px] md:right-[16px];
   }
@@ -38,7 +41,7 @@
   }
 
   .text-base-custom {
-    @apply text-[16px] leading-[16px] tracking-[4px] font-normal text-center;
+    @apply text-[16px] leading-[16px] tracking-[4px] font-normal;
   }
 
   .heroTitle {
