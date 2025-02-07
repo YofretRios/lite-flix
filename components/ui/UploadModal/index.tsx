@@ -45,7 +45,7 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
     setProgress(number);
   };
 
-  const handleDrag = function (e: React.DragEvent<HTMLDivElement>) {
+  const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === 'dragenter' || e.type === 'dragover') {
@@ -55,7 +55,7 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
     }
   };
 
-  const handleDrop = function (e: React.DragEvent<HTMLDivElement>) {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -65,6 +65,14 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
 
+      uploadToImageKit(file, trackProgress);
+    }
+  };
+
+  const handleSelect = () => {
+    const file = fileInputRef.current?.files?.[0];
+
+    if (file) {
       uploadToImageKit(file, trackProgress);
     }
   };
@@ -122,6 +130,14 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
               </span>
             </p>
           </div>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            className="hidden"
+            name="file"
+            onChange={handleSelect}
+          />
 
           <input
             className="input text-base-custom text-center w-[248px]"
