@@ -5,6 +5,7 @@ import closeIcon from '@/assets/icons/close.svg';
 import plusIcon from '@/assets/icons/plus-icon.svg';
 import Tertiary from '../Buttons/Tertiary';
 import useBlockScrolling from '@/utils/hooks/useBlockScrolling';
+import { useDialog } from '../UploadModal/UploadModalContext';
 
 type MenuProps = {
   isOpen: boolean;
@@ -13,6 +14,7 @@ type MenuProps = {
 
 export default function Menu({ isOpen, setIsOpen }: MenuProps) {
   useBlockScrolling(isOpen);
+  const { openDialog } = useDialog();
 
   const menuClass = clsx(
     'absolute pl-[24px] md:pl-[88px] right-0 top-0 h-screen bg-background z-30 w-full md:w-[768px] transition-transform duration-500 ease-in-out',
@@ -43,6 +45,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
         <li>mi lista</li>
         <li>
           <Tertiary
+            onClick={openDialog}
             textStyle="text-[22px]/[22px]"
             text="Agregar Pelicula"
             icon={{ src: plusIcon, alt: 'Play' }}

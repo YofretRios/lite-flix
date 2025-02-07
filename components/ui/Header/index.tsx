@@ -6,9 +6,11 @@ import menuIcon from '@/assets/icons/menu-icon.svg';
 import user from '@/assets/images/user.png';
 import Menu from '../Menu';
 import Tertiary from '../Buttons/Tertiary';
+import { useDialog } from '../UploadModal/UploadModalContext';
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
+  const { openDialog } = useDialog();
 
   const triggerMenu = () => {
     setOpenMenu(true);
@@ -22,6 +24,7 @@ export default function Header() {
       </p>
 
       <Tertiary
+        onClick={openDialog}
         className="ml-[64px] hidden md:flex md:order-2 animate-fadeInSlideBottom"
         text="Agregar Pelicula"
         icon={{ src: plusIcon, alt: 'Play' }}

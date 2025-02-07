@@ -9,6 +9,7 @@ type SecondaryProps = BaseButtonProps & {
 
 export default function Secondary({
   className,
+  onClick,
   text,
   textStyle,
   icon,
@@ -37,7 +38,7 @@ export default function Secondary({
   };
 
   return (
-    <button type="button" className={classes}>
+    <button onClick={onClick} type="button" className={classes}>
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         xmlns="http://www.w3.org/2000/svg"

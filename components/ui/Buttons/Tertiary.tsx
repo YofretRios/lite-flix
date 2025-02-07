@@ -7,6 +7,7 @@ export default function Tertiary({
   text,
   icon,
   textStyle,
+  onClick,
 }: BaseButtonProps) {
   const classes = clsx(
     'bg-transparent text-white px-4 py-2 flex items-center space-x-2',
@@ -18,7 +19,7 @@ export default function Tertiary({
   );
 
   return (
-    <button type="button" className={classes}>
+    <button onClick={onClick} type="button" className={classes}>
       {icon && <Image className={textClasses} src={icon.src} alt={icon.alt} />}
       <span className={textClasses}>{text}</span>
     </button>
