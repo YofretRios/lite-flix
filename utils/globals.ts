@@ -1,5 +1,6 @@
 export const TMDB_BASE_URL = 'http://image.tmdb.org/t/p/';
 export const TMDB_SECURE_BASE_URL = 'https://image.tmdb.org/t/p/';
+export const BASE_IMGKIT_URL = 'https://upload.imagekit.io/api/v1';
 export const TMDB_BACKDROP_SIZE = {
   sm: 'w300',
   md: 'w780',

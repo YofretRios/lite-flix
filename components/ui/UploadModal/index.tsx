@@ -1,18 +1,15 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { IKUpload, ImageKitProvider } from 'imagekitio-next';
+import clsx from 'clsx';
 import { uploadMovie } from '@/app/lib/movieActions';
-import imageAuthenticatorService from '@/services/imageAuthenticatorService';
 import closeIcon from '@/assets/icons/close.svg';
 import clipIcon from '@/assets/icons/clip.svg';
+import uploadToImageKit from '@/services/uploadImage';
 import Primary from '../Buttons/Primary';
 
 type UploadDialogProps = {
   ref: React.RefObject<HTMLDialogElement | null>;
 };
-
-const urlEndpoint = process.env.NEXT_PUBLIC_IMGKIT_URL_ENDPOINT;
-const publicKey = process.env.NEXT_PUBLIC_IMGKIT_PUBLIC_KEY;
 
 export default function UploadDialog({ ref }: UploadDialogProps) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -44,12 +41,8 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
     console.log(response);
   };
 
-  const trackProgress = (event: ProgressEvent<XMLHttpRequestEventTarget>) => {
-    if (event.lengthComputable) {
-      const percentage = (event.loaded / event.total) * 100;
-
-      setProgress(percentage);
-    }
+  const trackProgress = (number: number) => {
+    setProgress(number);
   };
 
   const handleDrag = function (e: React.DragEvent<HTMLDivElement>) {
@@ -72,22 +65,7 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
 
-      if (fileInputRef?.current) {
-        // Access the underlying input element
-        const inputElement = fileInputRef.current;
-        if (inputElement) {
-          // Create a change event
-          const event = new Event('change', { bubbles: true });
-
-          // Set the files
-          Object.defineProperty(inputElement, 'files', {
-            value: file,
-          });
-
-          // Dispatch the event
-          inputElement.dispatchEvent(event);
-        }
-      }
+      uploadToImageKit(file, trackProgress);
     }
   };
 
@@ -96,6 +74,11 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
       fileInputRef.current.click();
     }
   };
+
+  const dropZoneClass = clsx(
+    'flex items-center w-full justify-center mt-[72px] transition-all ease-in-out opacity-1 mb-[56px] md:my-[48px] py-[32px] md:py-[42px] border-2 border-dashed border-white cursor-pointer',
+    { 'border-aqua opacity-[0.5] text-aqua': dragActive }
+  );
 
   return (
     <dialog
@@ -120,7 +103,7 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
           </h2>
 
           <div
-            className="flex items-center w-full justify-center mt-[72px] mb-[56px] md:my-[48px] py-[32px] md:py-[42px] border-2 border-dashed border-white cursor-pointer"
+            className={dropZoneClass}
             onDragEnter={handleDrag}
             onDragOver={handleDrag}
             onDragLeave={handleDrag}
@@ -139,23 +122,6 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
               </span>
             </p>
           </div>
-
-          <ImageKitProvider
-            publicKey={publicKey}
-            urlEndpoint={urlEndpoint}
-            authenticator={imageAuthenticatorService}
-          >
-            <IKUpload
-              ref={fileInputRef}
-              className="hidden"
-              onSuccess={(data) => {
-                console.log(data);
-                setThumbnailUrl(data.thumbnailUrl);
-                setFileUrl(data.url);
-              }}
-              onUploadProgress={trackProgress}
-            />
-          </ImageKitProvider>
 
           <input
             className="input text-base-custom text-center w-[248px]"
