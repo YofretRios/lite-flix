@@ -19,7 +19,6 @@ export default function Secondary({
     className
   );
   const textClasses = clsx('tracking-[4px] text-[18px]/[18px]', textStyle);
-
   const pathVariants = {
     initial: {
       pathLength: animateBorder ? 0 : 1,
@@ -29,8 +28,10 @@ export default function Secondary({
       pathLength: 1,
       opacity: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.7,
         ease: 'easeInOut',
+        repeat: 2,
+        repeatType: 'reverse' as const,
       },
     },
   };
@@ -48,7 +49,7 @@ export default function Secondary({
           height="100%"
           fill="none"
           stroke="rgba(255,255,255,0.5)"
-          strokeWidth="1"
+          strokeWidth="2"
           initial="initial"
           animate="animate"
           whileHover="animate"

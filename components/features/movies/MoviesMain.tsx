@@ -38,7 +38,7 @@ export default function MoviesHome({
 
         <div className="bg-gradient-to-t from-background to-background/0 h-[150px] inset-x-[0] absolute bottom-0 md:hidden" />
       </div>
-      <div className="relative container z-10 text-white h-full">
+      <div className="container z-10 text-white h-full">
         <Header />
         <div className="flex flex-col md:flex-row h-[calc(100%-163px)] md:h-[calc(100%-104px)]">
           <HeroSection highlightedMovie={highlightedMovie} />
