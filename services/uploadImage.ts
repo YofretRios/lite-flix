@@ -1,19 +1,24 @@
 import { BASE_IMGKIT_URL } from '@/utils/globals';
 import axios, { AxiosProgressEvent } from 'axios';
 
+interface ImageKitAuthResponse {
+  token: string;
+  expire: number;
+  signature: string;
+}
+
 export default async function uploadToImageKit(
   file: File,
   onProgress?: (percentage: number) => void
 ) {
   // Fetch the authentication parameters from the server
-  const { data } = await axios.get('/api/imagekit_auth');
-  // const file = formData.get('movie') as File;
+  const { data } = await axios.get<ImageKitAuthResponse>('/api/imagekit_auth');
   const form = new FormData();
 
   form.append('file', file);
   form.append('fileName', file.name);
   form.append('token', data.token);
-  form.append('expire', data.expire);
+  form.append('expire', data.expire.toString());
   form.append('signature', data.signature);
   form.append('publicKey', process.env.NEXT_PUBLIC_IMGKIT_PUBLIC_KEY!);
 

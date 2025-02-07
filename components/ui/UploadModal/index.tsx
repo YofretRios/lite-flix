@@ -1,11 +1,9 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import clsx from 'clsx';
 import { uploadMovie } from '@/app/lib/movieActions';
 import closeIcon from '@/assets/icons/close.svg';
-import clipIcon from '@/assets/icons/clip.svg';
-import uploadToImageKit from '@/services/uploadImage';
 import Primary from '../Buttons/Primary';
+import UploadDropZone from '../UploadDropZone';
 
 type UploadDialogProps = {
   ref: React.RefObject<HTMLDialogElement | null>;
@@ -13,11 +11,9 @@ type UploadDialogProps = {
 
 export default function UploadDialog({ ref }: UploadDialogProps) {
   const formRef = useRef<HTMLFormElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [progress, setProgress] = useState(0);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [fileUrl, setFileUrl] = useState('');
-  const [dragActive, setDragActive] = useState(false);
 
   const closeModal = () => {
     ref?.current?.close();
@@ -41,52 +37,9 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
     console.log(response);
   };
 
-  const trackProgress = (number: number) => {
-    setProgress(number);
+  const trackProgress = (progress: number) => {
+    setProgress(progress);
   };
-
-  const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === 'dragenter' || e.type === 'dragover') {
-      setDragActive(true);
-    } else if (e.type === 'dragleave') {
-      setDragActive(false);
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-
-    console.log('handleDrop');
-
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-
-      uploadToImageKit(file, trackProgress);
-    }
-  };
-
-  const handleSelect = () => {
-    const file = fileInputRef.current?.files?.[0];
-
-    if (file) {
-      uploadToImageKit(file, trackProgress);
-    }
-  };
-
-  const onDropZoneClick = () => {
-    if (fileInputRef?.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const dropZoneClass = clsx(
-    'flex items-center w-full justify-center mt-[72px] transition-all ease-in-out opacity-1 mb-[56px] md:my-[48px] py-[32px] md:py-[42px] border-2 border-dashed border-white cursor-pointer',
-    { 'border-aqua opacity-[0.5] text-aqua': dragActive }
-  );
 
   return (
     <dialog
@@ -110,34 +63,7 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
             Agregar película
           </h2>
 
-          <div
-            className={dropZoneClass}
-            onDragEnter={handleDrag}
-            onDragOver={handleDrag}
-            onDragLeave={handleDrag}
-            onDrop={handleDrop}
-            onClick={onDropZoneClick}
-          >
-            <p className="text-[16px]/[19px] tracking-[4px] md:text-[16px]/[16px]">
-              <Image
-                className="inline mr-[16px]"
-                src={clipIcon}
-                alt="Paper clip"
-              />
-              <span>Agregá un archivo</span>
-              <span className="hidden md:inline">
-                &nbsp;o arrastralo y soltalo aquí
-              </span>
-            </p>
-          </div>
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            className="hidden"
-            name="file"
-            onChange={handleSelect}
-          />
+          <UploadDropZone onUploadProgress={trackProgress} />
 
           <input
             className="input text-base-custom text-center w-[248px]"
