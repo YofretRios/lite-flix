@@ -4,20 +4,30 @@ import Image from 'next/image';
 import circlePlay from '@/assets/icons/circle-play.svg';
 import circlePlayHover from '@/assets/icons/circle-play-hover.svg';
 import aquaStart from '@/assets/icons/aqua-start.svg';
+import { useMutation } from '@tanstack/react-query';
+import { deleteMovie } from '@/services/movieActions';
+import queryClient from '@/lib/queryClient';
 
 type MovieCardProps = {
+  id: number;
   title: string;
   backgroundImage: string;
   voteAverage?: number;
   releaseDate?: string;
+  showDelete?: boolean;
 };
 
 export default function MovieCard({
+  id,
   title,
   backgroundImage,
   voteAverage,
   releaseDate,
+  showDelete,
 }: MovieCardProps) {
+  const { mutate } = useMutation({
+    mutationFn: deleteMovie,
+  });
   const [isHovered, setIsHovered] = useState(false);
   // Child animation variant for the staggered animation, sliding from top while fading in
   const item = {
@@ -43,8 +53,16 @@ export default function MovieCard({
     setIsHovered(false);
   };
 
+  const removeMovie = () => {
+    mutate(id, {
+      onSuccess: () =>
+        queryClient.invalidateQueries({ queryKey: ['uploaded-movies'] }),
+    });
+  };
+
   return (
     <motion.li
+      layout
       variants={item}
       className="group relative flex justify-center w-[327px] h-[172px] lg:w-[220px] lg:h-[146px] gap-0 rounded-[4px] bg-cover bg-center bg-no-repeat"
       style={{
@@ -65,6 +83,16 @@ export default function MovieCard({
         </p>
       </div>
       <div className="absolute inset-0 bg-[#242424] bg-opacity-0 transition-all duration-300 ease-in-out group-hover:bg-opacity-70"></div>
+
+      {showDelete && (
+        <button
+          type="button"
+          className="hidden group-hover:block group-hover:absolute z-10 text-[16px]/[16px] tracking-[4px] p-4 bottom-[10px]"
+          onClick={removeMovie}
+        >
+          Remove Movie
+        </button>
+      )}
 
       {voteAverage && (
         <div className="hidden group-hover:flex group-hover:absolute left-0 bottom-0 text-[14px]/[12px] tracking-[2px] p-[24px] lg:p-[16px]">

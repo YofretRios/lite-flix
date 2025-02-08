@@ -1,12 +1,13 @@
 'use client';
+import { useRef } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from '@/lib/queryClient';
 import { Movie, UploadedMovie } from '@/types/movies';
 import Header from '@/components/ui/Header';
 import { TMDB_BACKDROP_SIZE, TMDB_SECURE_BASE_URL } from '@/utils/globals';
+import UploadDialog from '@/components/features/UploadModal';
 import HeroSection from './HeroSection';
 import ListSection from './ListSection';
-import { useRef } from 'react';
 
 type MoviesHomeProps = {
   highlightedMovie: Movie;
@@ -44,6 +45,7 @@ export default function MoviesHome({
           </div>
         </div>
       </main>
+      <UploadDialog />
     </QueryClientProvider>
   );
 }

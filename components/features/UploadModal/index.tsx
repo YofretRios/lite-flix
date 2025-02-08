@@ -1,6 +1,9 @@
 'use client';
 import { useRef, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { uploadMovie } from '@/services/movieActions';
+import closeIcon from '@/assets/icons/close.svg';
+import Image from 'next/image';
 import {
   DialogClose,
   DialogContent,
@@ -22,6 +25,9 @@ export default function UploadDialog() {
   const [fileUrl, setFileUrl] = useState('');
   const [title, setTitle] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const { mutate } = useMutation({
+    mutationFn: uploadMovie,
+  });
 
   const closeModal = () => {
     formRef.current?.reset();
@@ -31,18 +37,27 @@ export default function UploadDialog() {
     setSubmitted(false);
   };
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await uploadMovie({
+    const movieData = {
       title,
       thumbnailUrl,
       fileUrl,
+    };
+
+    mutate(movieData, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['uploaded-movies'] });
+        setSubmitted(true);
+      },
     });
 
-    queryClient.invalidateQueries({ queryKey: ['uploaded-movies'] });
-
-    setSubmitted(true);
+    // await uploadMovie({
+    //   title,
+    //   thumbnailUrl,
+    //   fileUrl,
+    // });
   };
 
   const onFileUpload = (results: ImageKitResponse) => {
@@ -62,6 +77,13 @@ export default function UploadDialog() {
           <DialogDescription></DialogDescription>
         </DialogHeader>
       </VisuallyHidden>
+      <DialogClose
+        className="hidden lg:block lg:absolute p-[24px] top-0 right-0"
+        onClick={closeModal}
+      >
+        <Image src={closeIcon} alt="Close menu" />
+        <span className="sr-only">Close</span>
+      </DialogClose>
       <div className="w-full px-[24px] lg:py-[48px] lg:px-[64px]">
         {submitted ? (
           <div className="flex flex-col items-center lg:justify-between justify-center h-full lg:h-[350px]">

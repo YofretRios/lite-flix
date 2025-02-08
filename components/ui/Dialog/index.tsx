@@ -4,9 +4,6 @@
 'use client';
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-// import { X } from 'lucide-react';
-import closeIcon from '@/assets/icons/close.svg';
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 const Dialog = DialogPrimitive.Root;
@@ -47,10 +44,6 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="hidden lg:block lg:absolute p-[24px] top-0 right-0">
-        <Image src={closeIcon} alt="Close menu" />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>
 ));

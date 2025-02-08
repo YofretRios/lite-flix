@@ -29,7 +29,6 @@ export async function uploadMovie(data: MovieData) {
 
 export async function fetchUploadedMovies(): Promise<UploadedMovie[]> {
   const supabase = await createClient();
-
   const { data, error } = await supabase
     .from('movies')
     .select()
@@ -37,6 +36,17 @@ export async function fetchUploadedMovies(): Promise<UploadedMovie[]> {
 
   if (error) {
     throw new Error('An error occurred while fetching movies');
+  }
+
+  return data;
+}
+
+export async function deleteMovie(id: number) {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from('movies').delete().eq('id', id);
+
+  if (error) {
+    throw new Error('An error occurred while deleting the movie');
   }
 
   return data;
