@@ -15,7 +15,7 @@ export default function HeroSection({
 }) {
   return (
     <div className="flex text-white w-full">
-      <div className="relative md:fixed md:bottom-0 flex w-full flex-col items-center md:items-start justify-end mt-52 md:mt-0">
+      <div className="relative lg:fixed lg:bottom-0 flex w-full flex-col items-center lg:items-start justify-end mt-52 lg:mt-0">
         <motion.p
           className="heroHint z-20"
           {...getAnimationProps('slideTop', 0.5)}
@@ -24,13 +24,13 @@ export default function HeroSection({
         </motion.p>
 
         <motion.h1
-          className="heroTitle text-aqua text-center md:text-left z-20"
+          className="heroTitle text-aqua text-center lg:text-left z-20"
           {...getAnimationProps('slideRight', 0.7)}
         >
           {highlightedMovie.title}
         </motion.h1>
 
-        <div className="flex flex-col md:flex-row space-y-[16px] md:space-x-[24px] md:space-y-[0] mt-[16px] md:mt-[32px] mb-[64px] md:mb-[162px] z-20">
+        <div className="flex flex-col lg:flex-row space-y-[16px] lg:space-x-[24px] lg:space-y-[0] mt-[16px] lg:mt-[32px] mb-[64px] lg:mb-[162px] z-20">
           <AnimatedWrapper delay={0.8}>
             <Primary>
               <Image src={playIcon} alt="Play" />

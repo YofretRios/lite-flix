@@ -24,15 +24,15 @@ export default function Header() {
   };
 
   return (
-    <header className="py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start">
+    <motion.header className="py-[15px] lg:py-[32px] flex items-center justify-between lg:justify-start">
       <Logo
-        className="order-2 md:order-1 z-[80] md:z-20"
+        className="order-2 lg:order-1 z-[80] lg:z-20"
         {...getAnimationProps('slideBottom')}
       />
 
       <AnimatedWrapper
         preset="slideBottom"
-        className="hidden md:flex md:order-2 md:z-20"
+        className="hidden lg:flex lg:order-2 lg:z-20"
       >
         <DialogTrigger className="z-30" asChild>
           <Tertiary className="ml-[64px] ">
@@ -44,7 +44,7 @@ export default function Header() {
 
       <motion.button
         type="button"
-        className="order-1 md:order-2 md:ml-auto z-[10] md:z-20 py-[10px]"
+        className="order-1 lg:order-2 lg:ml-auto z-[10] lg:z-20 py-[10px]"
         onClick={triggerMenu}
         {...getAnimationProps('slideTop', 0.3)}
       >
@@ -52,7 +52,7 @@ export default function Header() {
       </motion.button>
 
       <motion.button
-        className="relative hidden md:block md:order-2 md:ml-[40px] z-20"
+        className="relative hidden lg:block lg:order-2 lg:ml-[40px] z-20"
         type="button"
         {...getAnimationProps('slideTop', 0.4)}
       >
@@ -61,7 +61,7 @@ export default function Header() {
       </motion.button>
 
       <motion.button
-        className="order-3 md:ml-[40px] z-[80] md:z-30"
+        className="order-3 lg:ml-[40px] z-[80] lg:z-30"
         type="button"
         {...getAnimationProps('slideTop', 0.5)}
       >
@@ -69,6 +69,6 @@ export default function Header() {
       </motion.button>
 
       <Menu isOpen={openMenu} setIsOpen={setOpenMenu} />
-    </header>
+    </motion.header>
   );
 }

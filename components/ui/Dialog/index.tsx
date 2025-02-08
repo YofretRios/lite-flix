@@ -47,7 +47,7 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="hidden md:block md:absolute p-[24px] top-0 right-0">
+      <DialogPrimitive.Close className="hidden lg:block lg:absolute p-[24px] top-0 right-0">
         <Image src={closeIcon} alt="Close menu" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>

@@ -35,7 +35,7 @@ export default function ProgressBar({
   }, [progress, isConfirmed, isError]);
 
   const statusClass = clsx(
-    'text-[14px]/[14px] md:text-[18px]/[18px] tracking-[4] mt-[18px] text-right',
+    'text-[14px]/[14px] lg:text-[18px]/[18px] tracking-[4] mt-[18px] text-right',
     { 'text-aqua': status === statuses.success }
   );
   const progressClass = clsx('absolute bg-aqua h-[8px] -top-[2px]', {
@@ -50,10 +50,10 @@ export default function ProgressBar({
   };
 
   return (
-    <div className="flex flex-col justify-center w-full h-[87.60px] md:h-[106.60px]">
-      <p className="text-[14px]/[16px] tracking-[4px] md:text-[16px]/[19px] font-light mb-[16px]">
+    <div className="flex flex-col justify-center w-full h-[87.60px] lg:h-[106.60px]">
+      <p className="text-[14px]/[16px] tracking-[4px] lg:text-[16px]/[19px] font-light mb-[16px]">
         Cargando&nbsp;
-        <span className="text-[14px]/[14px] md:text-[16px]/[16px] tracking-[4px] font-bold">
+        <span className="text-[14px]/[14px] lg:text-[16px]/[16px] tracking-[4px] font-bold">
           %{progress}
         </span>
       </p>

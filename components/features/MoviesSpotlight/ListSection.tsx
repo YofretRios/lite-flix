@@ -54,7 +54,7 @@ export default function ListSection({
   };
 
   return (
-    <div className="z-10 pb-[52px] md:pb-[0]">
+    <div className="z-10 pb-[52px] lg:pb-[0]">
       <AnimatedWrapper preset="slideTop" delay={0.3}>
         <Select
           className="mb-[32px]"

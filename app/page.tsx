@@ -1,5 +1,5 @@
 import { fetchHightlight, fetchPopular } from '@/services/tbdService';
-import MoviesMain from '@/components/features/movies/MoviesMain';
+import MoviesMain from '@/components/features/MoviesSpotlight/MoviesMain';
 import { fetchUploadedMovies } from '../services/movieActions';
 import { Dialog } from '@/components/ui/Dialog';
 import UploadDialog from '@/components/features/UploadModal';

@@ -89,12 +89,12 @@ export default function UploadDropZone({
   };
 
   const dropZoneClass = clsx(
-    'flex items-center w-full justify-center  transition-all ease-in-out opacity-1 py-[32px] md:py-[42px] border-2 border-dashed cursor-pointer',
+    'flex items-center w-full justify-center  transition-all ease-in-out opacity-1 py-[32px] lg:py-[42px] border-2 border-dashed cursor-pointer',
     { 'opacity-[0.5] text-aqua border-aqua': dragActive }
   );
 
   return (
-    <div className="w-full mt-[72px] mb-[56px] md:my-[48px]">
+    <div className="w-full mt-[72px] mb-[56px] lg:my-[48px]">
       {progress <= 0 && !isError ? (
         <div
           className={dropZoneClass}
@@ -104,14 +104,14 @@ export default function UploadDropZone({
           onDrop={handleDrop}
           onClick={handleClick}
         >
-          <p className="text-[16px]/[19px] tracking-[4px] md:text-[16px]/[16px]">
+          <p className="text-[16px]/[19px] tracking-[4px] lg:text-[16px]/[16px]">
             <Image
               className="inline mr-[16px]"
               src={clipIcon}
               alt="Paper clip"
             />
             <span>Agregá un archivo</span>
-            <span className="hidden md:inline">
+            <span className="hidden lg:inline">
               &nbsp;o arrastralo y soltalo aquí
             </span>
           </p>

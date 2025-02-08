@@ -52,22 +52,22 @@ export default function UploadDialog() {
   };
 
   return (
-    <DialogContent className="bg-background text-white w-screen md:w-[738px] h-screen md:h-fit p-0 rounded-none border-none">
+    <DialogContent className="bg-background text-white w-screen lg:w-[738px] h-screen lg:h-fit p-0 rounded-none border-none">
       <VisuallyHidden>
         <DialogHeader>
           <DialogTitle></DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
       </VisuallyHidden>
-      <div className="w-full px-[24px] md:py-[48px] md:px-[64px]">
+      <div className="w-full px-[24px] lg:py-[48px] lg:px-[64px]">
         {submitted ? (
-          <div className="flex flex-col items-center md:justify-between justify-center h-full md:h-[350px]">
-            <Logo className="hidden md:block" />
+          <div className="flex flex-col items-center lg:justify-between justify-center h-full lg:h-[350px]">
+            <Logo className="hidden lg:block" />
             <div className="text-center">
-              <h2 className="text-[24px]/[26px] mb-[32px] md:mb-[24px]">
+              <h2 className="text-[24px]/[26px] mb-[32px] lg:mb-[24px]">
                 ¡Felicitaciones!
               </h2>
-              <p className="font-light mb-[133px] md:mb-0 text-[20px]/[32px] md:text-[20px]/[24px]">
+              <p className="font-light mb-[133px] lg:mb-0 text-[20px]/[32px] lg:text-[20px]/[24px]">
                 {title} The Movie fue correctamente subida.
               </p>
             </div>
@@ -87,7 +87,7 @@ export default function UploadDialog() {
             ref={formRef}
             onSubmit={onSubmit}
           >
-            <h2 className="text-[22px]/[22px] md:text-[20px]/[20px] tracking-[4px] text-aqua">
+            <h2 className="text-[22px]/[22px] lg:text-[20px]/[20px] tracking-[4px] text-aqua">
               Agregar película
             </h2>
 
@@ -103,7 +103,7 @@ export default function UploadDialog() {
             />
 
             <Primary
-              className="mt-[96px] md:mt-[48px] bg-white"
+              className="mt-[96px] lg:mt-[48px] bg-white"
               type="submit"
               disabled={!thumbnailUrl || !fileUrl || !title}
             >
@@ -112,7 +112,7 @@ export default function UploadDialog() {
 
             <DialogClose asChild>
               <Secondary
-                className="md:hidden mt-[24px]"
+                className="lg:hidden mt-[24px]"
                 type="button"
                 onClick={closeModal}
               >

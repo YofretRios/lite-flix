@@ -30,7 +30,7 @@
     @apply appearance-none bg-background border-b border-white text-white focus:outline-none pb-[8px];
   }
   .select-menu {
-    @apply absolute bg-background py-[24px] md:py-[16px] w-full md:w-[241px] md:right-[16px];
+    @apply absolute bg-background py-[24px] lg:py-[16px] w-full lg:w-[241px] lg:right-[16px];
   }
 
   .select-menu::before {
@@ -42,7 +42,7 @@
   }
 
   .heroTitle {
-    @apply text-[76px] w-full md:w-[480px] xl:w-full leading-[78px] tracking-[12px] font-bold;
+    @apply text-[76px] w-full lg:w-[480px] xl:w-full leading-[78px] tracking-[12px] font-bold;
   }
 
   .heroHint {

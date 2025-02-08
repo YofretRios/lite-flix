@@ -16,7 +16,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
   useBlockScrolling(isOpen);
 
   const menuClass = clsx(
-    'absolute pl-[24px] md:pl-[88px] right-0 top-0 h-screen bg-background z-30 w-full md:w-[768px] transition-transform duration-500 ease-in-out',
+    'absolute pl-[24px] lg:pl-[88px] right-0 top-0 h-screen bg-background z-30 w-full lg:w-[768px] transition-transform duration-500 ease-in-out',
     {
       '-translate-y-full': !isOpen,
       'translate-y-[0%]': isOpen,
@@ -34,12 +34,12 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
 
   return (
     <div className={menuClass}>
-      <div className="py-[25px] lg:py-[42px] flex items-center justify-between md:justify-start z-[80]">
+      <div className="py-[25px] lg:py-[42px] flex items-center justify-between lg:justify-start z-[80]">
         <button type="button" onClick={closeMenu}>
           <Image src={closeIcon} alt="Close menu" />
         </button>
       </div>
-      <ul className="font-light mt-[64px] md:mt-[94px]  space-y-[40px] text-[22px]/[22px] font-light tracking-[4px]">
+      <ul className="font-light mt-[64px] lg:mt-[94px]  space-y-[40px] text-[22px]/[22px] font-light tracking-[4px]">
         <li>inicio</li>
         <li>series</li>
         <li>películas</li>
