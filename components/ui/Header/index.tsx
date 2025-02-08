@@ -47,11 +47,12 @@ export default function Header() {
       </motion.button>
 
       <motion.button
-        className="hidden md:block md:order-2 md:ml-[40px] z-20"
+        className="relative hidden md:block md:order-2 md:ml-[40px] z-20"
         type="button"
         {...getAnimationProps('slideTop', 0.4)}
       >
         <Image src={bellIcon} alt="Notifications" />
+        <div className="absolute h-[9px] w-[9px] bg-aqua top-[0] right-[1px] rounded-full"></div>
       </motion.button>
 
       <motion.button

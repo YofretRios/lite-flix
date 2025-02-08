@@ -20,7 +20,7 @@ export default function MoviesHome({
   return (
     <UploadModalProvider>
       <main className="relative bg-background text-white h-full">
-        <div className="absolute top-0 left-0 right-0 h-[calc(100%-163px)] md:inset-0 md:h-full overflow-hidden">
+        <div className="absolute md:fixed top-0 left-0 right-0 h-[calc(100%-163px)] md:inset-0 md:h-full overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 animate-scaleIn"
             style={{

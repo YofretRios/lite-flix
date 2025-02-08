@@ -22,7 +22,7 @@ export default function MovieList({ children }: MovieListProps) {
       variants={container}
       initial="hidden"
       animate="show"
-      className="flex flex-col gap-[24px] md:gap-[20px] items-center"
+      className="flex flex-col gap-[24px] md:gap-[20px] items-center pb-[24px]"
     >
       {children}
     </motion.ul>

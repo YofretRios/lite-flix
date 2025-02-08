@@ -1,4 +1,4 @@
-import { fetchHightlight, fetchPopular } from '@/services/moviesService';
+import { fetchHightlight, fetchPopular } from '@/services/movieService';
 import MoviesMain from '@/components/features/movies/MoviesMain';
 import { fetchUploadedMovies } from './lib/movieActions';
 
