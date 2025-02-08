@@ -1,16 +1,34 @@
 import { BASE_IMGKIT_URL } from '@/utils/globals';
 import axios, { AxiosProgressEvent } from 'axios';
 
-interface ImageKitAuthResponse {
+type ImageKitAuthResponse = {
   token: string;
   expire: number;
   signature: string;
-}
+};
+
+export type ImageKitResponse = {
+  fileId: string;
+  name: string;
+  size: number;
+  versionInfo: {
+    id: string;
+    name: string;
+  };
+  filePath: string;
+  url: string;
+  fileType: string;
+  height: number;
+  width: number;
+  orientation: number;
+  thumbnailUrl: string;
+  AITags?: null | unknown; // Replace 'any' with specific type if AITags has a known structure
+};
 
 export default async function uploadToImageKit(
   file: File,
   onProgress?: (percentage: number) => void
-) {
+): Promise<ImageKitResponse> {
   // Fetch the authentication parameters from the server
   const { data } = await axios.get<ImageKitAuthResponse>('/api/imagekit_auth');
   const form = new FormData();
@@ -46,7 +64,7 @@ export default async function uploadToImageKit(
   };
 
   // Upload the file to ImageKit
-  const { data: imgKitData } = await axios.request(options);
+  const { data: imgKitData } = await axios.request<ImageKitResponse>(options);
 
   return imgKitData;
 }

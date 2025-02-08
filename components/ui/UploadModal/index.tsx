@@ -4,6 +4,7 @@ import { uploadMovie } from '@/app/lib/movieActions';
 import closeIcon from '@/assets/icons/close.svg';
 import Primary from '../Buttons/Primary';
 import UploadDropZone from '../UploadDropZone';
+import { ImageKitResponse } from '@/services/uploadImage';
 
 type UploadDialogProps = {
   ref: React.RefObject<HTMLDialogElement | null>;
@@ -11,14 +12,12 @@ type UploadDialogProps = {
 
 export default function UploadDialog({ ref }: UploadDialogProps) {
   const formRef = useRef<HTMLFormElement>(null);
-  const [progress, setProgress] = useState(0);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [fileUrl, setFileUrl] = useState('');
 
   const closeModal = () => {
     ref?.current?.close();
     formRef.current?.reset();
-    setProgress(0);
     setThumbnailUrl('');
     setFileUrl('');
   };
@@ -37,8 +36,8 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
     console.log(response);
   };
 
-  const trackProgress = (progress: number) => {
-    setProgress(progress);
+  const onFileUpload = (results: ImageKitResponse) => {
+    console.log(results);
   };
 
   return (
@@ -63,7 +62,7 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
             Agregar película
           </h2>
 
-          <UploadDropZone onUploadProgress={trackProgress} />
+          <UploadDropZone onSuccess={onFileUpload} />
 
           <input
             className="input text-base-custom text-center w-[248px]"
@@ -72,8 +71,6 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
             id="title"
             required
           />
-
-          {progress > 0 && <progress value={progress} max="100" />}
 
           <Primary
             className="mt-[96px] md:mt-[48px] bg-white"
