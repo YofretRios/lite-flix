@@ -17,6 +17,7 @@ export default function UploadDropZone({
   const [dragActive, setDragActive] = useState(false);
   const [progress, setProgress] = useState(0);
   const [fileId, setFileId] = useState<string | null>(null);
+  const [isError, setIsError] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const trackProgress = (progress: number) => {
@@ -38,18 +39,23 @@ export default function UploadDropZone({
   };
 
   const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
+    try {
+      e.preventDefault();
+      e.stopPropagation();
+      setDragActive(false);
 
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      const results = await uploadToImageKit(file, trackProgress);
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        const file = e.dataTransfer.files[0];
+        const results = await uploadToImageKit(file, trackProgress);
 
-      if (results && onSuccess) {
-        onSuccess(results);
-        setFileId(results.fileId);
+        if (results && onSuccess) {
+          onSuccess(results);
+          setFileId(results.fileId);
+        }
       }
+    } catch (error) {
+      setIsError(true);
+      console.error(error);
     }
   };
 
@@ -72,6 +78,11 @@ export default function UploadDropZone({
     }
   };
 
+  const handleRetry = async () => {
+    setIsError(false);
+    setProgress(0);
+  };
+
   const dropZoneClass = clsx(
     'flex items-center w-full justify-center  transition-all ease-in-out opacity-1 py-[32px] md:py-[42px] border-2 border-dashed cursor-pointer',
     { 'opacity-[0.5] text-aqua border-aqua': dragActive }
@@ -79,7 +90,7 @@ export default function UploadDropZone({
 
   return (
     <div className="w-full mt-[72px] mb-[56px] md:my-[48px]">
-      {progress <= 0 ? (
+      {progress <= 0 && !isError ? (
         <div
           className={dropZoneClass}
           onDragEnter={handleDrag}
@@ -101,25 +112,13 @@ export default function UploadDropZone({
           </p>
         </div>
       ) : (
-        <ProgressBar progress={progress} isConfirmed={fileId !== null} />
+        <ProgressBar
+          progress={progress}
+          isConfirmed={fileId !== null}
+          isError={isError}
+          onRetry={handleRetry}
+        />
       )}
-      {/* <div
-        className={dropZoneClass}
-        onDragEnter={handleDrag}
-        onDragOver={handleDrag}
-        onDragLeave={handleDrag}
-        onDrop={handleDrop}
-        onClick={handleClick}
-      >
-        <p className="text-[16px]/[19px] tracking-[4px] md:text-[16px]/[16px]">
-          <Image className="inline mr-[16px]" src={clipIcon} alt="Paper clip" />
-          <span>Agregá un archivo</span>
-          <span className="hidden md:inline">
-            &nbsp;o arrastralo y soltalo aquí
-          </span>
-        </p>
-      </div>
-      <ProgressBar progress={progress} isConfirmed={fileId !== null} /> */}
       <input
         ref={fileInputRef}
         type="file"

@@ -14,7 +14,8 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-        aqua: '#64EEBC',
+        aqua: 'var(--aqua)',
+        red: 'var(--red)',
       },
       fontWeight: {
         light: '300',

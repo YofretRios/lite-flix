@@ -6,6 +6,7 @@ type ProgressBarProps = {
   progress: number;
   isConfirmed?: boolean;
   isError?: boolean;
+  onRetry?: () => void;
 };
 
 const statuses = {
@@ -19,6 +20,7 @@ export default function ProgressBar({
   progress,
   isConfirmed,
   isError,
+  onRetry,
 }: ProgressBarProps) {
   const [status, setStatus] = useState(statuses.idle);
 
@@ -36,6 +38,16 @@ export default function ProgressBar({
     'text-[14px]/[14px] md:text-[18px]/[18px] tracking-[4] mt-[18px] text-right',
     { 'text-aqua': status === statuses.success }
   );
+  const progressClass = clsx('absolute bg-aqua h-[8px] -top-[2px]', {
+    'bg-red': isError,
+  });
+
+  const retry = () => {
+    if (onRetry && statuses.error) {
+      onRetry();
+      setStatus(statuses.idle);
+    }
+  };
 
   return (
     <div className="flex flex-col justify-center w-full h-[87.60px] md:h-[106.60px]">
@@ -47,14 +59,16 @@ export default function ProgressBar({
       </p>
       <div className="w-full h-[4px] bg-white/50 relative">
         <motion.div
-          className="absolute bg-aqua h-[8px] -top-[2px]"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
+          className={progressClass}
+          initial={{ width: !isError ? 0 : 100 }}
+          animate={{ width: `${!isError ? progress : 100}%` }}
           transition={{ duration: 0.5 }}
         />
       </div>
 
-      <p className={statusClass}>{status}</p>
+      <button type="button" className={statusClass} onClick={retry}>
+        {status}
+      </button>
     </div>
   );
 }

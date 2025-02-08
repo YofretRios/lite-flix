@@ -3,9 +3,11 @@ import MoviesMain from '@/components/features/movies/MoviesMain';
 import { fetchUploadedMovies } from '../services/movieActions';
 
 export default async function Home() {
-  const movie = await fetchHightlight();
-  const popular = await fetchPopular();
-  const uploadedMovies = await fetchUploadedMovies();
+  const [movie, popular, uploadedMovies] = await Promise.all([
+    fetchHightlight(),
+    fetchPopular(),
+    fetchUploadedMovies(),
+  ]);
 
   return (
     <MoviesMain

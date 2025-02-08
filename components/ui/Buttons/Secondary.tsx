@@ -13,7 +13,7 @@ export default function Secondary({
   animateBorder = false,
 }: SecondaryProps) {
   const classes = clsx(
-    'bg-[#242424]/50 text-white tracking-[4px] text-[18px]/[18px] py-[21px] flex items-center justify-center space-x-2 min-w-[248px] relative transition-opacity duration-300 hover:opacity-80',
+    'bg-[#242424]/50 text-white tracking-[4px] text-[18px]/[18px] py-[21px] flex items-center justify-center space-x-2 min-w-[248px] relative transition-opacity duration-300 hover:opacity-70',
     className
   );
   const pathVariants = {

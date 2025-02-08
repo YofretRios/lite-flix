@@ -76,7 +76,7 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
               type="button"
               onClick={closeModal}
             >
-              Ir a Home
+              <span className="text-black">Ir a Home</span>
             </Primary>
           </div>
         ) : (
@@ -101,11 +101,11 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
             />
 
             <Primary
-              className="text-black mt-[96px] md:mt-[48px] bg-white"
+              className="mt-[96px] md:mt-[48px] bg-white"
               type="submit"
               disabled={!thumbnailUrl || !fileUrl || !title}
             >
-              Subir Pelicula
+              <span className="text-black">Subir Pelicula</span>
             </Primary>
           </form>
         )}

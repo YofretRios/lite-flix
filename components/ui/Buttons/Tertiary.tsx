@@ -7,7 +7,7 @@ export default function Tertiary({
   onClick,
 }: BaseButtonProps) {
   const classes = clsx(
-    'bg-transparent text-white font-bold tracking-[4px] text-[18px]/[18px] px-4 py-2 flex items-center space-x-2 transition-opacity duration-300 hover:opacity-80',
+    'bg-transparent text-white font-bold tracking-[4px] text-[18px]/[18px] px-4 py-2 flex items-center space-x-2 transition-opacity duration-300 hover:opacity-60',
     className
   );
 

@@ -7,6 +7,8 @@
 @layer base {
   :root {
     --background: #242424;
+    --aqua: #64eebc;
+    --red: #ff0000;
   }
 
   body,

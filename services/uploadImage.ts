@@ -29,6 +29,11 @@ export default async function uploadToImageKit(
   file: File,
   onProgress?: (percentage: number) => void
 ): Promise<ImageKitResponse> {
+  // Throw an error if the file is not an image
+  if (!file.type.startsWith('image/')) {
+    throw new Error('File must be an image');
+  }
+
   // Fetch the authentication parameters from the server
   const { data } = await axios.get<ImageKitAuthResponse>('/api/imagekit_auth');
   const form = new FormData();
