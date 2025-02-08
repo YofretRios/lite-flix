@@ -7,6 +7,7 @@ type ProgressBarProps = {
   isConfirmed?: boolean;
   isError?: boolean;
   onRetry?: () => void;
+  cancelRequest?: () => void;
 };
 
 const statuses = {
@@ -20,6 +21,7 @@ export default function ProgressBar({
   progress,
   isConfirmed,
   isError,
+  cancelRequest,
   onRetry,
 }: ProgressBarProps) {
   const [status, setStatus] = useState(statuses.idle);
@@ -35,16 +37,20 @@ export default function ProgressBar({
   }, [progress, isConfirmed, isError]);
 
   const statusClass = clsx(
-    'text-[14px]/[14px] lg:text-[18px]/[18px] tracking-[4] mt-[18px] text-right',
+    'text-[14px]/[14px] lg:text-[18px]/[18px] tracking-[4] mt-[18px] text-right transition-opacity duration-300 hover:opacity-70',
     { 'text-aqua': status === statuses.success }
   );
   const progressClass = clsx('absolute bg-aqua h-[8px] -top-[2px]', {
     'bg-red': isError,
   });
 
-  const retry = () => {
+  const onAction = () => {
     if (onRetry && statuses.error) {
       onRetry();
+      setStatus(statuses.idle);
+    }
+    if (cancelRequest && statuses.loading) {
+      cancelRequest();
       setStatus(statuses.idle);
     }
   };
@@ -66,7 +72,7 @@ export default function ProgressBar({
         />
       </div>
 
-      <button type="button" className={statusClass} onClick={retry}>
+      <button type="button" className={statusClass} onClick={onAction}>
         {status}
       </button>
     </div>

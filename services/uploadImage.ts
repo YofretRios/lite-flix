@@ -27,7 +27,8 @@ export type ImageKitResponse = {
 
 export default async function uploadToImageKit(
   file: File,
-  onProgress?: (percentage: number) => void
+  onProgress?: (percentage: number) => void,
+  controller?: AbortController
 ): Promise<ImageKitResponse> {
   // Throw an error if the file is not an image
   if (!file.type.startsWith('image/')) {
@@ -45,31 +46,31 @@ export default async function uploadToImageKit(
   form.append('signature', data.signature);
   form.append('publicKey', process.env.NEXT_PUBLIC_IMGKIT_PUBLIC_KEY!);
 
-  const options = {
-    method: 'POST',
-    url: `${BASE_IMGKIT_URL}/files/upload`,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Accept: 'application/json',
-    },
-    data: form,
-    onUploadProgress: function (progressEvent: AxiosProgressEvent) {
-      if (!progressEvent.total) {
-        return;
-      }
-
-      const percentage = Math.round(
-        (progressEvent.loaded * 100) / progressEvent.total
-      );
-
-      if (onProgress) {
-        onProgress(percentage);
-      }
-    },
-  };
-
   // Upload the file to ImageKit
-  const { data: imgKitData } = await axios.request<ImageKitResponse>(options);
+  const { data: imgKitData } = await axios.post<ImageKitResponse>(
+    `${BASE_IMGKIT_URL}/files/upload`,
+    form,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Accept: 'application/json',
+      },
+      onUploadProgress: function (progressEvent: AxiosProgressEvent) {
+        if (!progressEvent.total) {
+          return;
+        }
+
+        const percentage = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+
+        if (onProgress) {
+          onProgress(percentage);
+        }
+      },
+      signal: controller?.signal,
+    }
+  );
 
   return imgKitData;
 }

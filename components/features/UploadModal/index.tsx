@@ -14,6 +14,7 @@ import { ImageKitResponse } from '@/services/uploadImage';
 import Logo from '../../ui/Logo';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import Secondary from '@/components/ui/Buttons/Secondary';
+import queryClient from '@/lib/queryClient';
 
 export default function UploadDialog() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -38,6 +39,8 @@ export default function UploadDialog() {
       thumbnailUrl,
       fileUrl,
     });
+
+    queryClient.invalidateQueries({ queryKey: ['uploaded-movies'] });
 
     setSubmitted(true);
   };

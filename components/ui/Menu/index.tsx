@@ -24,7 +24,6 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
   );
 
   const closeMenu = () => {
-    console.log('close menu');
     setIsOpen(false);
   };
 

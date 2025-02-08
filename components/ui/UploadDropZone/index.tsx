@@ -10,10 +10,13 @@ type UploadDropZoneProps = {
   onSuccess?: (imageData: ImageKitResponse) => void;
 };
 
+const controller = new AbortController();
+
 export default function UploadDropZone({
   onUploadProgress,
   onSuccess,
 }: UploadDropZoneProps) {
+  const controllerRef = useRef(controller);
   const [dragActive, setDragActive] = useState(false);
   const [progress, setProgress] = useState(0);
   const [fileId, setFileId] = useState<string | null>(null);
@@ -46,7 +49,11 @@ export default function UploadDropZone({
 
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
         const file = e.dataTransfer.files[0];
-        const results = await uploadToImageKit(file, trackProgress);
+        const results = await uploadToImageKit(
+          file,
+          trackProgress,
+          controllerRef.current
+        );
 
         if (results && onSuccess) {
           onSuccess(results);
@@ -70,7 +77,11 @@ export default function UploadDropZone({
       const file = fileInputRef.current?.files?.[0];
 
       if (file) {
-        const results = await uploadToImageKit(file, trackProgress);
+        const results = await uploadToImageKit(
+          file,
+          trackProgress,
+          controllerRef.current
+        );
 
         if (results && onSuccess) {
           onSuccess(results);
@@ -83,9 +94,14 @@ export default function UploadDropZone({
     }
   };
 
-  const handleRetry = async () => {
+  const handleRetry = () => {
     setIsError(false);
     setProgress(0);
+  };
+
+  const cancelUpload = () => {
+    controllerRef.current.abort();
+    controllerRef.current = new AbortController();
   };
 
   const dropZoneClass = clsx(
@@ -122,6 +138,7 @@ export default function UploadDropZone({
           isConfirmed={fileId !== null}
           isError={isError}
           onRetry={handleRetry}
+          cancelRequest={cancelUpload}
         />
       )}
       <input
