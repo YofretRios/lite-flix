@@ -41,7 +41,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
           />
         </button>
       </div>
-      <ul className="font-light mt-[54-px] lg:mt-[94px]  space-y-[40px] text-[22px]/[22px] font-light tracking-[4px]">
+      <ul className="font-light mt-[64px] lg:mt-[74px]  space-y-[40px] text-[22px]/[22px] font-light tracking-[4px]">
         <li>inicio</li>
         <li>series</li>
         <li>películas</li>
