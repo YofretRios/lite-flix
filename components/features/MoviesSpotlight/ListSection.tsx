@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import MovieList from './MovieList';
 import { Movie, UploadedMovie } from '@/types/movies';
 import Select from '@/components/ui/Select';
@@ -8,6 +9,7 @@ import SelectOption from '@/components/ui/Select/SelectOption';
 import MovieCard from '@/components/ui/MovieCard';
 import { TMDB_POSTER_SIZE, TMDB_SECURE_BASE_URL } from '@/utils/globals';
 import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
+import { fetchUploadedMovies } from '@/services/movieActions';
 
 type ListSectionProps = {
   popular: Movie[];
@@ -25,6 +27,11 @@ export default function ListSection({
   popular,
   uploadedMovies,
 }: ListSectionProps) {
+  const { data: movieData } = useQuery({
+    queryKey: ['uploaded-movies'],
+    queryFn: () => fetchUploadedMovies(),
+    initialData: uploadedMovies,
+  });
   const [activeList, setActiveList] = useState('popular');
 
   const onChange = (selection: Selection) => {
@@ -44,7 +51,7 @@ export default function ListSection({
       ));
     }
 
-    return uploadedMovies.map((item) => (
+    return movieData.map((item) => (
       <MovieCard
         key={item.id}
         title={item.movie_title}

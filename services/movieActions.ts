@@ -1,6 +1,6 @@
 'use server';
 import { UploadedMovie } from '@/types/movies';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@/lib/supabase/server';
 
 type MovieData = {
   title: string;
@@ -36,7 +36,7 @@ export async function fetchUploadedMovies(): Promise<UploadedMovie[]> {
     .order('created_at', { ascending: false });
 
   if (error) {
-    throw new Error('An error while fetching the movie data');
+    throw new Error('An error occurred while fetching movies');
   }
 
   return data;
