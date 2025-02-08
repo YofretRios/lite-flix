@@ -7,6 +7,7 @@ import user from '@/assets/images/user.png';
 import Menu from '../Menu';
 import Tertiary from '../Buttons/Tertiary';
 import { useDialog } from '../UploadModal/UploadModalContext';
+import AnimatedWrapper from '../AnimatedWrapper';
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -18,35 +19,55 @@ export default function Header() {
 
   return (
     <header className="py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start">
-      <p className="text-aqua tracking-[4px] text-[34px]/[34px] order-2 md:order-1 animate-fadeInSlideBottom z-30 md:z-20">
-        <span className="font-bold">LITE</span>
-        <span className="font-light font-semibold">FLIX</span>
-      </p>
+      <AnimatedWrapper
+        preset="slideBottom"
+        className="order-2 md:order-1 z-30 md:z-20"
+      >
+        <p className="text-aqua tracking-[4px] text-[34px]/[34px] ">
+          <span className="font-bold">LITE</span>
+          <span className="font-light font-semibold">FLIX</span>
+        </p>
+      </AnimatedWrapper>
 
-      <Tertiary
-        onClick={openDialog}
-        className="ml-[64px] hidden md:flex md:order-2 animate-fadeInSlideBottom"
+      <AnimatedWrapper
+        preset="slideBottom"
+        className="hidden md:flex md:order-2 md:z-20"
       >
-        <Image src={plusIcon} alt="Play" />
-        <span>Agregar Pelicula</span>
-      </Tertiary>
+        <Tertiary onClick={openDialog} className="ml-[64px] ">
+          <Image src={plusIcon} alt="Play" />
+          <span>Agregar Pelicula</span>
+        </Tertiary>
+      </AnimatedWrapper>
 
-      <button
-        type="button"
-        className="order-1 md:order-2 md:ml-auto opacity-0 animate-fadeInSlideTop delay-300ms py-[10px]"
-        onClick={triggerMenu}
+      <AnimatedWrapper
+        className="order-1 md:order-2 md:ml-auto z-20"
+        preset="slideTop"
+        delay={0.3}
       >
-        <Image src={menuIcon} alt="Menu" />
-      </button>
-      <button
-        type="button"
-        className="hidden md:block md:order-2 md:ml-[40px] opacity-0 animate-fadeInSlideTop delay-400ms"
+        <button type="button" className="py-[10px]" onClick={triggerMenu}>
+          <Image src={menuIcon} alt="Menu" />
+        </button>
+      </AnimatedWrapper>
+
+      <AnimatedWrapper
+        className="hidden md:block md:order-2 md:ml-[40px] z-20"
+        preset="slideTop"
+        delay={0.4}
       >
-        <Image src={bellIcon} alt="Notifications" />
-      </button>
-      <button className="order-3 md:ml-[40px] opacity-0 animate-fadeInSlideTop delay-500ms z-30">
-        <Image height={40} width={40} src={user} alt="Anonymous user" />
-      </button>
+        <button type="button">
+          <Image src={bellIcon} alt="Notifications" />
+        </button>
+      </AnimatedWrapper>
+
+      <AnimatedWrapper
+        className="order-3 md:ml-[40px] z-30"
+        preset="slideTop"
+        delay={0.5}
+      >
+        <button>
+          <Image height={40} width={40} src={user} alt="Anonymous user" />
+        </button>
+      </AnimatedWrapper>
 
       <Menu isOpen={openMenu} setIsOpen={setOpenMenu} />
     </header>

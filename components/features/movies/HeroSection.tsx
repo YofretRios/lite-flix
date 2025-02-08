@@ -14,12 +14,17 @@ export default function HeroSection({
   return (
     <div className="flex text-white w-full">
       <div className="flex w-full flex-col items-center md:items-start justify-end mt-52 md:mt-0">
-        <p className="heroHint delay-500ms animate-fadeInSlideTop">
-          Original de <span>LiteFlix</span>
-        </p>
-        <h1 className="heroTitle text-aqua delay-600ms opacity-0 animate-fadeInSlideRight text-center md:text-left">
-          {highlightedMovie.title}
-        </h1>
+        <AnimatedWrapper delay={0.5} preset="slideTop" className="z-20">
+          <p className="heroHint">
+            Original de <span>LiteFlix</span>
+          </p>
+        </AnimatedWrapper>
+
+        <AnimatedWrapper delay={0.6} preset="slideRight" className="z-20">
+          <h1 className="heroTitle text-aqua text-center md:text-left">
+            {highlightedMovie.title}
+          </h1>
+        </AnimatedWrapper>
 
         <div className="flex flex-col md:flex-row space-y-[16px] md:space-x-[24px] md:space-y-[0] mt-[16px] md:mt-[32px] mb-[64px] md:mb-[162px] z-20">
           <AnimatedWrapper delay={0.8}>

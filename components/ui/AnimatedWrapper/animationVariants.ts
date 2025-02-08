@@ -1,16 +1,22 @@
 const variants = {
-  slideLeft: {
+  slideBottom: {
     hidden: {
       opacity: 0,
-      x: -20,
+      y: 20,
     },
     visible: {
       opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        ease: 'easeInOut',
-      },
+      y: 0,
+    },
+  },
+  slideTop: {
+    hidden: {
+      opacity: 0,
+      y: -20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
     },
   },
   slideRight: {
@@ -21,10 +27,16 @@ const variants = {
     visible: {
       opacity: 1,
       x: 0,
-      transition: {
-        duration: 0.5,
-        ease: 'easeInOut',
-      },
+    },
+  },
+  slideLeft: {
+    hidden: {
+      opacity: 0,
+      x: -20,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
     },
   },
 };

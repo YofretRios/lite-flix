@@ -7,6 +7,7 @@ import SelectContent from '@/components/ui/Select/SelectContent';
 import SelectOption from '@/components/ui/Select/SelectOption';
 import MovieCard from '@/components/ui/MovieCard';
 import { TMDB_POSTER_SIZE, TMDB_SECURE_BASE_URL } from '@/utils/globals';
+import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
 
 type ListSectionProps = {
   popular: Movie[];
@@ -54,17 +55,19 @@ export default function ListSection({
 
   return (
     <div className="z-10 pb-[52px] md:pb-[0]">
-      <Select
-        className="mb-[32px] animate-fadeInSlideTop delay-300ms"
-        onChange={onChange}
-        defaultValue={initialValue}
-      >
-        <SelectTrigger>Ver:</SelectTrigger>
-        <SelectContent>
-          <SelectOption label="Populares" value="popular" />
-          <SelectOption label="Mis películas" value="my-movies" />
-        </SelectContent>
-      </Select>
+      <AnimatedWrapper preset="slideTop" delay={0.3}>
+        <Select
+          className="mb-[32px]"
+          onChange={onChange}
+          defaultValue={initialValue}
+        >
+          <SelectTrigger>Ver:</SelectTrigger>
+          <SelectContent>
+            <SelectOption label="Populares" value="popular" />
+            <SelectOption label="Mis películas" value="my-movies" />
+          </SelectContent>
+        </Select>
+      </AnimatedWrapper>
 
       <MovieList>{renderMoviesList()}</MovieList>
     </div>
