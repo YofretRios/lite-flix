@@ -1,17 +1,21 @@
+'use client';
 import { useRef, useState } from 'react';
-import Image from 'next/image';
 import { uploadMovie } from '@/services/movieActions';
-import closeIcon from '@/assets/icons/close.svg';
-import Primary from '../Buttons/Primary';
-import UploadDropZone from '../UploadDropZone';
+import {
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/Dialog';
+import Primary from '../../ui/Buttons/Primary';
+import UploadDropZone from '../../ui/UploadDropZone';
 import { ImageKitResponse } from '@/services/uploadImage';
-import Logo from '../Logo';
+import Logo from '../../ui/Logo';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import Secondary from '@/components/ui/Buttons/Secondary';
 
-type UploadDialogProps = {
-  ref: React.RefObject<HTMLDialogElement | null>;
-};
-
-export default function UploadDialog({ ref }: UploadDialogProps) {
+export default function UploadDialog() {
   const formRef = useRef<HTMLFormElement>(null);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [fileUrl, setFileUrl] = useState('');
@@ -19,10 +23,10 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
   const [submitted, setSubmitted] = useState(false);
 
   const closeModal = () => {
-    ref?.current?.close();
     formRef.current?.reset();
     setThumbnailUrl('');
     setFileUrl('');
+    setTitle('');
     setSubmitted(false);
   };
 
@@ -48,40 +52,38 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
   };
 
   return (
-    <dialog
-      ref={ref}
-      className="relative bg-background text-white w-screen md:w-[738px] h-[calc(100vh-163px)] md:h-fit"
-    >
-      <div className="w-full pt-[96px] md:py-[48px] md:px-[64px]">
-        <button
-          className="hidden md:block md:absolute p-[24px] top-0 right-0"
-          type="button"
-          onClick={closeModal}
-        >
-          <Image src={closeIcon} alt="Close menu" />
-        </button>
+    <DialogContent className="bg-background text-white w-screen md:w-[738px] h-screen md:h-fit p-0 rounded-none border-none">
+      <VisuallyHidden>
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
+          <DialogDescription></DialogDescription>
+        </DialogHeader>
+      </VisuallyHidden>
+      <div className="w-full px-[24px] md:py-[48px] md:px-[64px]">
         {submitted ? (
-          <div className="flex flex-col items-center justify-between justify-center h-[350px]">
+          <div className="flex flex-col items-center md:justify-between justify-center h-full md:h-[350px]">
             <Logo className="hidden md:block" />
             <div className="text-center">
               <h2 className="text-[24px]/[26px] mb-[32px] md:mb-[24px]">
                 ¡Felicitaciones!
               </h2>
-              <p className="text-[20px]/[32px] md:text-[20px]/[24px]">
-                Liteflix The Movie fue correctamente subida.
+              <p className="font-light mb-[133px] md:mb-0 text-[20px]/[32px] md:text-[20px]/[24px]">
+                {title} The Movie fue correctamente subida.
               </p>
             </div>
-            <Primary
-              className="text-black bg-white"
-              type="button"
-              onClick={closeModal}
-            >
-              <span className="text-black">Ir a Home</span>
-            </Primary>
+            <DialogClose asChild>
+              <Primary
+                className="text-black bg-white"
+                type="button"
+                onClick={closeModal}
+              >
+                <span className="text-black">Ir a Home</span>
+              </Primary>
+            </DialogClose>
           </div>
         ) : (
           <form
-            className="flex flex-col items-center justify-center"
+            className="flex flex-col items-center justify-center h-full"
             ref={formRef}
             onSubmit={onSubmit}
           >
@@ -107,9 +109,19 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
             >
               <span className="text-black">Subir Pelicula</span>
             </Primary>
+
+            <DialogClose asChild>
+              <Secondary
+                className="md:hidden mt-[24px]"
+                type="button"
+                onClick={closeModal}
+              >
+                <span className="text-white">Salir</span>
+              </Secondary>
+            </DialogClose>
           </form>
         )}
       </div>
-    </dialog>
+    </DialogContent>
   );
 }

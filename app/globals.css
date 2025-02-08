@@ -9,6 +9,7 @@
     --background: #242424;
     --aqua: #64eebc;
     --red: #ff0000;
+    --radius: 0.5rem;
   }
 
   body,
@@ -21,12 +22,6 @@
   body {
     color: var(--foreground);
     background: var(--background);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #242424;
   }
 }
 

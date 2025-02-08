@@ -1,20 +1,23 @@
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import Image from 'next/image';
+import clsx from 'clsx';
 import plusIcon from '@/assets/icons/plus-icon.svg';
 import bellIcon from '@/assets/icons/bell-icon.svg';
 import menuIcon from '@/assets/icons/menu-icon.svg';
 import user from '@/assets/images/user.png';
 import Menu from '../Menu';
 import Tertiary from '../Buttons/Tertiary';
-import { useDialog } from '../UploadModal/UploadModalContext';
 import AnimatedWrapper from '../AnimatedWrapper';
-import { motion } from 'motion/react';
 import { getAnimationProps } from '@/utils/animationVariants';
 import Logo from '../Logo';
+import { DialogTrigger } from '../Dialog';
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
-  const { openDialog } = useDialog();
+  const menuClasses = clsx('transition-opacity duration-300', {
+    'opacity-0': openMenu,
+  });
 
   const triggerMenu = () => {
     setOpenMenu(true);
@@ -23,7 +26,7 @@ export default function Header() {
   return (
     <header className="py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start">
       <Logo
-        className="order-2 md:order-1 z-30 md:z-20"
+        className="order-2 md:order-1 z-[80] md:z-20"
         {...getAnimationProps('slideBottom')}
       />
 
@@ -31,19 +34,21 @@ export default function Header() {
         preset="slideBottom"
         className="hidden md:flex md:order-2 md:z-20"
       >
-        <Tertiary onClick={openDialog} className="ml-[64px] ">
-          <Image src={plusIcon} alt="Play" />
-          <span>Agregar Pelicula</span>
-        </Tertiary>
+        <DialogTrigger className="z-30" asChild>
+          <Tertiary className="ml-[64px] ">
+            <Image src={plusIcon} alt="Play" />
+            <span>Agregar Pelicula</span>
+          </Tertiary>
+        </DialogTrigger>
       </AnimatedWrapper>
 
       <motion.button
         type="button"
-        className="order-1 md:order-2 md:ml-auto z-20 py-[10px]"
+        className="order-1 md:order-2 md:ml-auto z-[10] md:z-20 py-[10px]"
         onClick={triggerMenu}
         {...getAnimationProps('slideTop', 0.3)}
       >
-        <Image src={menuIcon} alt="Menu" />
+        <Image className={menuClasses} src={menuIcon} alt="Menu" />
       </motion.button>
 
       <motion.button
@@ -56,7 +61,7 @@ export default function Header() {
       </motion.button>
 
       <motion.button
-        className="order-3 md:ml-[40px] z-30"
+        className="order-3 md:ml-[40px] z-[80] md:z-30"
         type="button"
         {...getAnimationProps('slideTop', 0.5)}
       >
