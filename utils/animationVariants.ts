@@ -41,4 +41,20 @@ const variants = {
   },
 };
 
+export const getAnimationProps = (
+  preset: keyof typeof variants,
+  delay = 0,
+  duration = 0.5,
+  ease = 'easeInOut'
+) => ({
+  variants: variants[preset],
+  initial: 'hidden',
+  animate: 'visible',
+  transition: {
+    delay,
+    duration,
+    ease,
+  },
+});
+
 export default variants;

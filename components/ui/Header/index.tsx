@@ -8,6 +8,8 @@ import Menu from '../Menu';
 import Tertiary from '../Buttons/Tertiary';
 import { useDialog } from '../UploadModal/UploadModalContext';
 import AnimatedWrapper from '../AnimatedWrapper';
+import { motion } from 'motion/react';
+import { getAnimationProps } from '@/utils/animationVariants';
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -19,15 +21,13 @@ export default function Header() {
 
   return (
     <header className="py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start">
-      <AnimatedWrapper
-        preset="slideBottom"
-        className="order-2 md:order-1 z-30 md:z-20"
+      <motion.p
+        className="order-2 md:order-1 z-30 md:z-20 text-aqua tracking-[4px] text-[34px]/[34px]"
+        {...getAnimationProps('slideBottom')}
       >
-        <p className="text-aqua tracking-[4px] text-[34px]/[34px] ">
-          <span className="font-bold">LITE</span>
-          <span className="font-light font-semibold">FLIX</span>
-        </p>
-      </AnimatedWrapper>
+        <span className="font-bold">LITE</span>
+        <span className="font-light font-semibold">FLIX</span>
+      </motion.p>
 
       <AnimatedWrapper
         preset="slideBottom"
@@ -39,35 +39,30 @@ export default function Header() {
         </Tertiary>
       </AnimatedWrapper>
 
-      <AnimatedWrapper
-        className="order-1 md:order-2 md:ml-auto z-20"
-        preset="slideTop"
-        delay={0.3}
+      <motion.button
+        type="button"
+        className="order-1 md:order-2 md:ml-auto z-20 py-[10px]"
+        onClick={triggerMenu}
+        {...getAnimationProps('slideTop', 0.3)}
       >
-        <button type="button" className="py-[10px]" onClick={triggerMenu}>
-          <Image src={menuIcon} alt="Menu" />
-        </button>
-      </AnimatedWrapper>
+        <Image src={menuIcon} alt="Menu" />
+      </motion.button>
 
-      <AnimatedWrapper
+      <motion.button
         className="hidden md:block md:order-2 md:ml-[40px] z-20"
-        preset="slideTop"
-        delay={0.4}
+        type="button"
+        {...getAnimationProps('slideTop', 0.4)}
       >
-        <button type="button">
-          <Image src={bellIcon} alt="Notifications" />
-        </button>
-      </AnimatedWrapper>
+        <Image src={bellIcon} alt="Notifications" />
+      </motion.button>
 
-      <AnimatedWrapper
+      <motion.button
         className="order-3 md:ml-[40px] z-30"
-        preset="slideTop"
-        delay={0.5}
+        type="button"
+        {...getAnimationProps('slideTop', 0.5)}
       >
-        <button>
-          <Image height={40} width={40} src={user} alt="Anonymous user" />
-        </button>
-      </AnimatedWrapper>
+        <Image height={40} width={40} src={user} alt="Anonymous user" />
+      </motion.button>
 
       <Menu isOpen={openMenu} setIsOpen={setOpenMenu} />
     </header>
