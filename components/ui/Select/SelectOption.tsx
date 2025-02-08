@@ -19,7 +19,7 @@ export default function SelectOption({ label, value }: SelectOptionProps) {
 
   const isSelected = selectedValue.value === value;
   const labelClass = clsx('text-[16px]/[16px]', {
-    'font-light font-semibold': !isSelected,
+    'font-light': !isSelected,
   });
 
   return (

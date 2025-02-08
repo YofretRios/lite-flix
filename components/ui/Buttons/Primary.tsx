@@ -6,14 +6,20 @@ export default function Primary({
   type = 'button',
   className,
   onClick,
+  disabled = false,
 }: BaseButtonProps) {
   const classes = clsx(
-    'bg-background text-white py-[21px] flex items-center justify-center space-x-2 min-w-[248px] transition-opacity duration-300 hover:opacity-80 tracking-[4px] text-[18px]/[21.6px]',
+    'bg-background text-white py-[21px] flex items-center justify-center space-x-2 min-w-[248px] transition-opacity duration-300 hover:opacity-80 tracking-[4px] text-[18px]/[21.6px] disabled:opacity-50',
     className
   );
 
   return (
-    <button type={type} className={classes} onClick={onClick}>
+    <button
+      type={type}
+      disabled={disabled}
+      className={classes}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

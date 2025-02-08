@@ -3,4 +3,5 @@ export interface BaseButtonProps {
   type?: 'button' | 'submit';
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }

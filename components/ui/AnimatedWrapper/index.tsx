@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import animationVariants from '../../../utils/animationVariants';
+import animationVariants from '@/utils/animationVariants';
 import clsx from 'clsx';
 
 type AnimatedWrapper = {

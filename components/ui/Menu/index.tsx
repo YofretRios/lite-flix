@@ -28,6 +28,11 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
     setIsOpen(false);
   };
 
+  const addMovie = () => {
+    openDialog();
+    closeMenu();
+  };
+
   return (
     <div className={menuClass}>
       <div className="py-[25px] lg:py-[42px] flex items-center justify-between md:justify-start">
@@ -44,7 +49,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
         <li>mis películas</li>
         <li>mi lista</li>
         <li>
-          <Tertiary onClick={openDialog}>
+          <Tertiary onClick={addMovie}>
             <Image src={plusIcon} alt="Plus" />
             <span className="text-[22px]/[22px]">Agregar Pelicula</span>
           </Tertiary>

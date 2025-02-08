@@ -10,6 +10,7 @@ import { useDialog } from '../UploadModal/UploadModalContext';
 import AnimatedWrapper from '../AnimatedWrapper';
 import { motion } from 'motion/react';
 import { getAnimationProps } from '@/utils/animationVariants';
+import Logo from '../Logo';
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -21,13 +22,10 @@ export default function Header() {
 
   return (
     <header className="py-[15px] lg:py-[32px] flex items-center justify-between md:justify-start">
-      <motion.p
-        className="order-2 md:order-1 z-30 md:z-20 text-aqua tracking-[4px] text-[34px]/[34px]"
+      <Logo
+        className="order-2 md:order-1 z-30 md:z-20"
         {...getAnimationProps('slideBottom')}
-      >
-        <span className="font-bold">LITE</span>
-        <span className="font-light font-semibold">FLIX</span>
-      </motion.p>
+      />
 
       <AnimatedWrapper
         preset="slideBottom"
