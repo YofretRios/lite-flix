@@ -57,7 +57,7 @@ export default function ListSection({
 
     if (movieData.length === 0) {
       return (
-        <DialogTrigger className="z-30" asChild>
+        <DialogTrigger asChild>
           <Tertiary>
             <Image
               src="/icons/plus-icon.svg"
@@ -65,7 +65,7 @@ export default function ListSection({
               width="16"
               height="16"
             />
-            <span>Agregar Pelicula</span>
+            <span>Agregar!</span>
           </Tertiary>
         </DialogTrigger>
       );
@@ -76,7 +76,7 @@ export default function ListSection({
         key={item.id}
         id={item.id}
         title={item.movie_title}
-        backgroundImage={item.thumbnail_url}
+        backgroundImage={item.url}
         showDelete
       />
     ));

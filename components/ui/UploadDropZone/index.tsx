@@ -1,12 +1,18 @@
-import React, { useRef, useState } from 'react';
+import React, { useImperativeHandle, useRef, useState, RefObject } from 'react';
 import Image from 'next/image';
 import uploadToImageKit, { ImageKitResponse } from '@/services/uploadImage';
 import clsx from 'clsx';
 import ProgressBar from '../ProgressBar';
 
+export type UploadDropZoneHandle = {
+  resetSignal: () => void;
+};
+
 type UploadDropZoneProps = {
   onUploadProgress?: (progress: number) => void;
   onSuccess?: (imageData: ImageKitResponse) => void;
+  reset?: () => void;
+  ref: RefObject<UploadDropZoneHandle | null>;
 };
 
 const controller = new AbortController();
@@ -14,6 +20,7 @@ const controller = new AbortController();
 export default function UploadDropZone({
   onUploadProgress,
   onSuccess,
+  ref,
 }: UploadDropZoneProps) {
   const controllerRef = useRef(controller);
   const [dragActive, setDragActive] = useState(false);
@@ -21,6 +28,19 @@ export default function UploadDropZone({
   const [fileId, setFileId] = useState<string | null>(null);
   const [isError, setIsError] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      resetSignal: () => {
+        setProgress(0);
+        setFileId(null);
+        setIsError(false);
+        controllerRef.current = new AbortController();
+      },
+    }),
+    []
+  );
 
   const trackProgress = (progress: number) => {
     setProgress(progress);

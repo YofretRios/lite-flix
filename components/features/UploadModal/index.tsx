@@ -10,16 +10,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/Dialog';
-import Primary from '../../ui/Buttons/Primary';
-import UploadDropZone from '../../ui/UploadDropZone';
 import { ImageKitResponse } from '@/services/uploadImage';
-import Logo from '../../ui/Logo';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import Secondary from '@/components/ui/Buttons/Secondary';
 import queryClient from '@/lib/queryClient';
+import Primary from '../../ui/Buttons/Primary';
+import UploadDropZone, { UploadDropZoneHandle } from '../../ui/UploadDropZone';
+import Logo from '../../ui/Logo';
 
 export default function UploadDialog() {
   const formRef = useRef<HTMLFormElement>(null);
+  const dropZoneRef = useRef<UploadDropZoneHandle | null>(null);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [fileUrl, setFileUrl] = useState('');
   const [title, setTitle] = useState('');
@@ -30,6 +31,7 @@ export default function UploadDialog() {
 
   const closeModal = () => {
     formRef.current?.reset();
+    dropZoneRef.current?.resetSignal();
     setThumbnailUrl('');
     setFileUrl('');
     setTitle('');
@@ -109,7 +111,7 @@ export default function UploadDialog() {
               Agregar película
             </h2>
 
-            <UploadDropZone onSuccess={onFileUpload} />
+            <UploadDropZone ref={dropZoneRef} onSuccess={onFileUpload} />
 
             <input
               className="input text-base-custom text-center w-[248px]"

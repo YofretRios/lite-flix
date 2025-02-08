@@ -81,7 +81,7 @@ export default function MovieCard({
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         />
-        <p className="text-base-custom mt-[34px] lg:mt-[20px] group-hover:mt-[0] group-hover:text-left">
+        <p className="text-base-custom mt-[34px] lg:mt-[20px] group-hover:mt-[0] text-center group-hover:text-left">
           {title}
         </p>
       </div>
@@ -93,7 +93,7 @@ export default function MovieCard({
           className="hidden group-hover:block group-hover:absolute z-10 text-[16px]/[16px] tracking-[4px] p-4 bottom-[10px]"
           onClick={removeMovie}
         >
-          Remove Movie
+          Borrar Pelicula
         </button>
       )}
 
