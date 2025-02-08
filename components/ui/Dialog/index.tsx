@@ -1,3 +1,6 @@
+/**
+ * Reusalbe Dialog component from https://ui.shadcn.com/docs/components/dialog
+ */
 'use client';
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';

@@ -66,15 +66,20 @@ export default function UploadDropZone({
   };
 
   const handleSelect = async () => {
-    const file = fileInputRef.current?.files?.[0];
+    try {
+      const file = fileInputRef.current?.files?.[0];
 
-    if (file) {
-      const results = await uploadToImageKit(file, trackProgress);
+      if (file) {
+        const results = await uploadToImageKit(file, trackProgress);
 
-      if (results && onSuccess) {
-        onSuccess(results);
-        setFileId(results.fileId);
+        if (results && onSuccess) {
+          onSuccess(results);
+          setFileId(results.fileId);
+        }
       }
+    } catch (error) {
+      setIsError(true);
+      console.error(error);
     }
   };
 
