@@ -1,6 +1,6 @@
-import { fetchHightlight, fetchPopular } from '@/services/movieService';
+import { fetchHightlight, fetchPopular } from '@/services/tbdService';
 import MoviesMain from '@/components/features/movies/MoviesMain';
-import { fetchUploadedMovies } from './lib/movieActions';
+import { fetchUploadedMovies } from '../services/movieActions';
 
 export default async function Home() {
   const movie = await fetchHightlight();

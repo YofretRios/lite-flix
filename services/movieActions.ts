@@ -30,7 +30,10 @@ export async function uploadMovie(data: MovieData) {
 export async function fetchUploadedMovies(): Promise<UploadedMovie[]> {
   const supabase = await createClient();
 
-  const { data, error } = await supabase.from('movies').select();
+  const { data, error } = await supabase
+    .from('movies')
+    .select()
+    .order('created_at', { ascending: false });
 
   if (error) {
     throw new Error('An error while fetching the movie data');

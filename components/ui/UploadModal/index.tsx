@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { uploadMovie } from '@/app/lib/movieActions';
+import { uploadMovie } from '@/services/movieActions';
 import closeIcon from '@/assets/icons/close.svg';
 import Primary from '../Buttons/Primary';
 import UploadDropZone from '../UploadDropZone';
