@@ -42,7 +42,7 @@
   }
 
   .heroTitle {
-    @apply text-[76px] leading-[78px] tracking-[12px] font-bold;
+    @apply text-[76px] w-full md:w-[480px] xl:w-full leading-[78px] tracking-[12px] font-bold;
   }
 
   .heroHint {
