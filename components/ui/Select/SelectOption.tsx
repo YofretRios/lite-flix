@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import clsx from 'clsx';
-import heavyCheckMark from '@/assets/icons/heavy-check-mark.svg';
 import { useSelect } from './SelectContext';
 
 type SelectOptionProps = {
@@ -30,7 +29,13 @@ export default function SelectOption({ label, value }: SelectOptionProps) {
     >
       <span className={labelClass}>{label}</span>
       {isSelected && (
-        <Image className="ml-auto" src={heavyCheckMark} alt="Option Selected" />
+        <Image
+          className="ml-auto"
+          src="/icons/heavy-check-mark.svg"
+          width="14"
+          height="11"
+          alt="Option Selected"
+        />
       )}
     </button>
   );

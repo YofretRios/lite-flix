@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
-import circlePlay from '@/assets/icons/circle-play.svg';
-import circlePlayHover from '@/assets/icons/circle-play-hover.svg';
-import aquaStart from '@/assets/icons/aqua-start.svg';
 import { useMutation } from '@tanstack/react-query';
 import { deleteMovie } from '@/services/movieActions';
 import queryClient from '@/lib/queryClient';
@@ -73,8 +70,14 @@ export default function MovieCard({
       <div className="flex flex-col items-center justify-end mb-[32px] lg:mb-[16px] z-10 group-hover:flex-row group-hover:items-start group-hover:justify-start group-hover:gap-[12px] group-hover:absolute group-hover:bottom-[40%] group-hover:items-center group-hover:w-full group-hover:px-[24px] lg:group-hover:px-[16px] group-hover:mb-[0]">
         <Image
           className="w-[48px] lg:w-[40px] group-hover:w-[24px]"
-          src={isHovered ? circlePlayHover : circlePlay}
+          src={
+            isHovered
+              ? '/icons/circle-play-hover.svg'
+              : '/icons/circle-play.svg'
+          }
           alt="Playback"
+          width="24"
+          height="24"
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         />
@@ -96,7 +99,13 @@ export default function MovieCard({
 
       {voteAverage && (
         <div className="hidden group-hover:flex group-hover:absolute left-0 bottom-0 text-[14px]/[12px] tracking-[2px] p-[24px] lg:p-[16px]">
-          <Image className="-mt-[3px]" src={aquaStart} alt="Rating start" />
+          <Image
+            className="-mt-[3px]"
+            src="/icons/aqua-start.svg"
+            width="12"
+            height="12"
+            alt="Rating start"
+          />
           <p className="ml-[7px]">{voteAverage.toFixed(1)}</p>
         </div>
       )}

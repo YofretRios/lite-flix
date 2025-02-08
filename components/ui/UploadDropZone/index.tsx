@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import uploadToImageKit, { ImageKitResponse } from '@/services/uploadImage';
-import clipIcon from '@/assets/icons/clip.svg';
 import clsx from 'clsx';
 import ProgressBar from '../ProgressBar';
 
@@ -123,7 +122,9 @@ export default function UploadDropZone({
           <p className="text-[16px]/[19px] tracking-[4px] lg:text-[16px]/[16px]">
             <Image
               className="inline mr-[16px]"
-              src={clipIcon}
+              src="/icons/clip.svg"
+              width="18"
+              height="18"
               alt="Paper clip"
             />
             <span>Agregá un archivo</span>

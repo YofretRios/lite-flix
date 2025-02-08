@@ -2,7 +2,6 @@
 import { useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { uploadMovie } from '@/services/movieActions';
-import closeIcon from '@/assets/icons/close.svg';
 import Image from 'next/image';
 import {
   DialogClose,
@@ -52,12 +51,6 @@ export default function UploadDialog() {
         setSubmitted(true);
       },
     });
-
-    // await uploadMovie({
-    //   title,
-    //   thumbnailUrl,
-    //   fileUrl,
-    // });
   };
 
   const onFileUpload = (results: ImageKitResponse) => {
@@ -81,7 +74,7 @@ export default function UploadDialog() {
         className="hidden lg:block lg:absolute p-[24px] top-0 right-0"
         onClick={closeModal}
       >
-        <Image src={closeIcon} alt="Close menu" />
+        <Image src="/icons/close.svg" alt="Close" width="20" height="20" />
         <span className="sr-only">Close</span>
       </DialogClose>
       <div className="w-full px-[24px] lg:py-[48px] lg:px-[64px]">

@@ -2,10 +2,6 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import clsx from 'clsx';
-import plusIcon from '@/assets/icons/plus-icon.svg';
-import bellIcon from '@/assets/icons/bell-icon.svg';
-import menuIcon from '@/assets/icons/menu-icon.svg';
-import user from '@/assets/images/user.png';
 import Menu from '../Menu';
 import Tertiary from '../Buttons/Tertiary';
 import AnimatedWrapper from '../AnimatedWrapper';
@@ -36,7 +32,12 @@ export default function Header() {
       >
         <DialogTrigger className="z-30" asChild>
           <Tertiary className="ml-[64px] ">
-            <Image src={plusIcon} alt="Play" />
+            <Image
+              src="/icons/plus-icon.svg"
+              alt="Plus"
+              width="16"
+              height="16"
+            />
             <span>Agregar Pelicula</span>
           </Tertiary>
         </DialogTrigger>
@@ -48,7 +49,13 @@ export default function Header() {
         onClick={triggerMenu}
         {...getAnimationProps('slideTop', 0.3)}
       >
-        <Image className={menuClasses} src={menuIcon} alt="Menu" />
+        <Image
+          className={menuClasses}
+          src="/icons/menu-icon.svg"
+          alt="Menu"
+          width="27"
+          height="14"
+        />
       </motion.button>
 
       <motion.button
@@ -56,7 +63,12 @@ export default function Header() {
         type="button"
         {...getAnimationProps('slideTop', 0.4)}
       >
-        <Image src={bellIcon} alt="Notifications" />
+        <Image
+          src="/icons/bell-icon.svg"
+          alt="Notification"
+          width="26"
+          height="26"
+        />
         <div className="absolute h-[9px] w-[9px] bg-aqua top-[0] right-[1px] rounded-full"></div>
       </motion.button>
 
@@ -65,7 +77,12 @@ export default function Header() {
         type="button"
         {...getAnimationProps('slideTop', 0.5)}
       >
-        <Image height={40} width={40} src={user} alt="Anonymous user" />
+        <Image
+          height="40"
+          width="40"
+          src="/images/user.png"
+          alt="Anonymous user"
+        />
       </motion.button>
 
       <Menu isOpen={openMenu} setIsOpen={setOpenMenu} />

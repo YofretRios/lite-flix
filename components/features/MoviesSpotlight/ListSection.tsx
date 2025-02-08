@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import plusIcon from '@/assets/icons/plus-icon.svg';
 import { useQuery } from '@tanstack/react-query';
 import MovieList from './MovieList';
 import { Movie, UploadedMovie } from '@/types/movies';
@@ -60,7 +59,12 @@ export default function ListSection({
       return (
         <DialogTrigger className="z-30" asChild>
           <Tertiary>
-            <Image src={plusIcon} alt="Play" />
+            <Image
+              src="/icons/plus-icon.svg"
+              alt="Plus"
+              width="16"
+              height="16"
+            />
             <span>Agregar Pelicula</span>
           </Tertiary>
         </DialogTrigger>

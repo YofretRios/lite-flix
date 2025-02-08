@@ -2,8 +2,6 @@ import { motion } from 'motion/react';
 import Image from 'next/image';
 import Primary from '@/components/ui/Buttons/Primary';
 import Secondary from '@/components/ui/Buttons/Secondary';
-import playIcon from '@/assets/icons/play-icon.svg';
-import plusIcon from '@/assets/icons/plus-icon.svg';
 import { Movie } from '@/types/movies';
 import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
 import { getAnimationProps } from '@/utils/animationVariants';
@@ -33,7 +31,12 @@ export default function HeroSection({
         <div className="flex flex-col lg:flex-row space-y-[16px] lg:space-x-[24px] lg:space-y-[0] mt-[16px] lg:mt-[32px] mb-[64px] lg:mb-[162px] z-20">
           <AnimatedWrapper delay={0.8}>
             <Primary>
-              <Image src={playIcon} alt="Play" />
+              <Image
+                alt="Play"
+                src="/icons/play-icon.svg"
+                width={14}
+                height={16}
+              />
               <span>Reproducir</span>
             </Primary>
           </AnimatedWrapper>
@@ -43,7 +46,12 @@ export default function HeroSection({
               delay={0.8}
               className="flex items-center space-x-2"
             >
-              <Image src={plusIcon} alt="Plus" />
+              <Image
+                src="/icons/plus-icon.svg"
+                alt="Plus"
+                width="16"
+                height="16"
+              />
               <span>Mi Lista</span>
             </AnimatedWrapper>
           </Secondary>

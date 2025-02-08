@@ -1,8 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
-import closeIcon from '@/assets/icons/close.svg';
-import plusIcon from '@/assets/icons/plus-icon.svg';
 import Tertiary from '../Buttons/Tertiary';
 import useBlockScrolling from '@/utils/hooks/useBlockScrolling';
 import { DialogTrigger } from '@radix-ui/react-dialog';
@@ -35,7 +33,12 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
     <div className={menuClass}>
       <div className="py-[25px] lg:py-[42px] flex items-center justify-between lg:justify-start z-[80]">
         <button type="button" onClick={closeMenu}>
-          <Image src={closeIcon} alt="Close menu" />
+          <Image
+            src="/icons/close.svg"
+            width="20"
+            height="20"
+            alt="Close menu"
+          />
         </button>
       </div>
       <ul className="font-light mt-[64px] lg:mt-[94px]  space-y-[40px] text-[22px]/[22px] font-light tracking-[4px]">
@@ -49,7 +52,12 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
         <li>
           <DialogTrigger asChild>
             <Tertiary onClick={addMovie}>
-              <Image src={plusIcon} alt="Plus" />
+              <Image
+                src="/icons/plus-icon.svg"
+                width="16"
+                height="16"
+                alt="Plus"
+              />
               <span className="text-[22px]/[22px]">Agregar Pelicula</span>
             </Tertiary>
           </DialogTrigger>
