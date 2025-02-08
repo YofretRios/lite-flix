@@ -38,6 +38,12 @@ Welcome to **LiteFlix** – A sleek, modern, and interactive movie browsing expe
    npm run dev
    ```
 
-Note: This project Requires environment variables to work properly
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Notes
+
+This project Requires environment variables to work properly
+
+## 🚀 Live Version
+
+Deployed Site: [LiteFlix](https://lite-flix-bice.vercel.app/)
