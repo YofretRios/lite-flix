@@ -42,7 +42,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Notes
 
-This project Requires environment variables to work properly
+- This project Requires environment variables to work properly
+- Some Browser extensions may generate differences between the server and client renders, these are not caused by the code some examples are Grammarly, ColorZilla and LanguageTool, using incognito mode should solve this issue when running locally
 
 ## 🚀 Live Version
 
