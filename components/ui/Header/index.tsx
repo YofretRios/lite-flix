@@ -26,9 +26,10 @@ export default function Header() {
       <Tertiary
         onClick={openDialog}
         className="ml-[64px] hidden md:flex md:order-2 animate-fadeInSlideBottom"
-        text="Agregar Pelicula"
-        icon={{ src: plusIcon, alt: 'Play' }}
-      />
+      >
+        <Image src={plusIcon} alt="Play" />
+        <span>Agregar Pelicula</span>
+      </Tertiary>
 
       <button
         type="button"

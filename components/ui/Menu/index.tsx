@@ -44,12 +44,10 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
         <li>mis películas</li>
         <li>mi lista</li>
         <li>
-          <Tertiary
-            onClick={openDialog}
-            textStyle="text-[22px]/[22px]"
-            text="Agregar Pelicula"
-            icon={{ src: plusIcon, alt: 'Play' }}
-          />
+          <Tertiary onClick={openDialog}>
+            <Image src={plusIcon} alt="Plus" />
+            <span className="text-[22px]/[22px]">Agregar Pelicula</span>
+          </Tertiary>
         </li>
         <li>cerrar sesión</li>
       </ul>

@@ -68,7 +68,7 @@
 }
 
 .animate-fadeInSlideLeft {
-  animation: fadeInSlideLeft 0.5s ease-in-out forwards;
+  animation: fadeInSlideLeft 0.5s ease-in-out;
 }
 
 .delay-100ms {

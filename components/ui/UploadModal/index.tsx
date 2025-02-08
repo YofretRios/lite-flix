@@ -72,12 +72,9 @@ export default function UploadDialog({ ref }: UploadDialogProps) {
             required
           />
 
-          <Primary
-            className="mt-[96px] md:mt-[48px] bg-white"
-            textStyle="text-background"
-            type="submit"
-            text="Subir Pelicula"
-          />
+          <Primary className="mt-[96px] md:mt-[48px] bg-white" type="submit">
+            Subir Pelicula
+          </Primary>
         </form>
       </div>
     </dialog>

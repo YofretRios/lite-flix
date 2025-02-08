@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import Image from 'next/image';
 import { motion } from 'motion/react';
 import { BaseButtonProps } from './types';
 
@@ -8,18 +7,15 @@ type SecondaryProps = BaseButtonProps & {
 };
 
 export default function Secondary({
+  children,
   className,
   onClick,
-  text,
-  textStyle,
-  icon,
   animateBorder = false,
 }: SecondaryProps) {
   const classes = clsx(
-    'bg-[#242424]/50 text-white py-[21px] flex items-center justify-center space-x-2 min-w-[248px] relative',
+    'bg-[#242424]/50 text-white tracking-[4px] text-[18px]/[18px] py-[21px] flex items-center justify-center space-x-2 min-w-[248px] relative transition-opacity duration-300 hover:opacity-80',
     className
   );
-  const textClasses = clsx('tracking-[4px] text-[18px]/[18px]', textStyle);
   const pathVariants = {
     initial: {
       pathLength: animateBorder ? 0 : 1,
@@ -57,8 +53,7 @@ export default function Secondary({
           variants={pathVariants}
         />
       </svg>
-      {icon && <Image className={textClasses} src={icon.src} alt={icon.alt} />}
-      <span className={textClasses}>{text}</span>
+      {children}
     </button>
   );
 }
