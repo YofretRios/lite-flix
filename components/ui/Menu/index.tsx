@@ -18,7 +18,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
     {
       '-translate-y-full': !isOpen,
       'translate-y-[0%]': isOpen,
-    }
+    },
   );
 
   const closeMenu = () => {

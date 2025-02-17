@@ -61,11 +61,16 @@ export default function MovieCard({
     <motion.li
       layout
       variants={item}
-      className="group relative flex justify-center w-[327px] h-[172px] lg:w-[220px] lg:h-[146px] gap-0 rounded-[4px] bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-      }}
+      className="group relative flex justify-center w-[327px] h-[172px] lg:w-[220px] lg:h-[146px] gap-0 rounded-[4px] bg-cover bg-center bg-no-repeat overflow-hidden"
     >
+      <Image
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10 animate-scaleIn object-cover h-full lg:h-full"
+        src={backgroundImage}
+        alt="Movie backdrop"
+        width={342}
+        height={513}
+        priority
+      />
       <div className="opacity-[.9] bg-gradient-to-b from-black/0 via-black/50 to-black h-[120px] inset-x-[0] absolute bottom-0" />
       <div className="flex flex-col items-center justify-end mb-[32px] lg:mb-[16px] z-10 group-hover:flex-row group-hover:items-start group-hover:justify-start group-hover:gap-[12px] group-hover:absolute group-hover:bottom-[40%] group-hover:items-center group-hover:w-full group-hover:px-[24px] lg:group-hover:px-[16px] group-hover:mb-[0]">
         <Image
