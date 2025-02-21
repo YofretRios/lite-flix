@@ -13,7 +13,7 @@ export default function HeroSection({
 }) {
   return (
     <div className="flex text-white w-full">
-      <div className="relative lg:fixed lg:bottom-0 flex w-full flex-col items-center lg:items-start justify-end mt-52 lg:mt-0">
+      <div className="relative lg:bottom-0 flex w-full flex-col items-center lg:items-start justify-end mt-52 lg:mt-0">
         <motion.p
           className="heroHint z-20"
           {...getAnimationProps('slideTop', 0.5)}
