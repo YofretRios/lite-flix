@@ -88,7 +88,7 @@ export default function UploadDialog() {
                 ¡Felicitaciones!
               </h2>
               <p className="font-light mb-[133px] lg:mb-0 text-[20px]/[32px] lg:text-[20px]/[24px]">
-                {title} The Movie fue correctamente subida.
+                {title} fue correctamente subida.
               </p>
             </div>
             <DialogClose asChild>
